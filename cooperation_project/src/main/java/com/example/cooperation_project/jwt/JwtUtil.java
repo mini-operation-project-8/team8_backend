@@ -53,12 +53,12 @@ public class JwtUtil {
     }
 
     // 토큰 생성
-    public String createToken(String username, UserRoleEnum role) {
+    public String createToken(String userId, UserRoleEnum role) {
         Date date = new Date();
 
         return BEARER_PREFIX +
                 Jwts.builder()
-                        .setSubject(username)
+                        .setSubject(userId)
                         .claim(AUTHORIZATION_KEY, role)
                         .setExpiration(new Date(date.getTime() + TOKEN_TIME))
                         .setIssuedAt(date)
@@ -89,8 +89,8 @@ public class JwtUtil {
     }
 
     // 인증 객체 생성
-    public Authentication createAuthentication(String username) { // 책임분리를 위해서 인증객체를 만드는 부분을 JWTUtil 쪽으로 보냄.
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+    public Authentication createAuthentication(String userId) { // 책임분리를 위해서 인증객체를 만드는 부분을 JWTUtil 쪽으로 보냄.
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 

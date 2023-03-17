@@ -22,7 +22,7 @@ public class UseTimeAop {
 
     private final ApiUseTimeRepository apiUseTimeRepository;
 
-    @Around("execution(public * com.example.myselectshop.controller..*(..))") // @Around ->  mySelectshop의 모든 Controller 부분에 다 동작시키겠다.
+    @Around("execution(public * com.example.cooperation_project.controller..*(..))") // @Around ->  mySelectshop의 모든 Controller 부분에 다 동작시키겠다.
     public synchronized Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         // 측정 시작 시간
         long startTime = System.currentTimeMillis();
