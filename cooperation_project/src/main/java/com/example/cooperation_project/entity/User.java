@@ -24,4 +24,10 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
+    public User(String userId, String password, UserRoleEnum role){
+        this.userId = userId;
+        this.password = password;
+        this.role = role;
+    }
+
 }
