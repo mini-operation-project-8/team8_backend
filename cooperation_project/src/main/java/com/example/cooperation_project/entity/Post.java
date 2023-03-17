@@ -1,5 +1,6 @@
 package com.example.cooperation_project.entity;
 
+import com.example.cooperation_project.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,5 +25,14 @@ public class Post extends Timestamped{
     @Column(nullable = false)
     private Long hits;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
+
+    public Post(PostRequestDto postRequestDto, User user){
+        this.title = postRequestDto.getTitle();
+        this.content = postRequestDto.getContent();
+        this.user = user;
+    }
 
 }

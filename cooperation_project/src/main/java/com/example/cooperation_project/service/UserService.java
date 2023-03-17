@@ -1,15 +1,18 @@
 package com.example.cooperation_project.service;
 
+import com.example.cooperation_project.dto.LoginRequestDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.SignupRequestDto;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
+import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Service
@@ -17,6 +20,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final  JwtUtil jwtUtil;
 
     private static final String ADMIN_TOKEN = "admin";
 
@@ -44,6 +48,26 @@ public class UserService {
         userRepository.save(user);
         MsgCodeResponseDto result = new MsgCodeResponseDto();
         result.setResult("회원가입 성공", HttpStatus.OK.value());
+        return result;
+    }
+
+    @Transactional
+    public MsgCodeResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
+        String userId = loginRequestDto.getUserId();
+        String password = loginRequestDto.getPassword();
+
+        // 사용자 확인
+        User user = userRepository.findByUserId(userId).orElseThrow(
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+        // 비밀번호 확인
+        if(!user.getPassword().equals(password)){
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+        }
+        httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUserId(), user.getRole()));
+
+        MsgCodeResponseDto result = new MsgCodeResponseDto();
+        result.setResult("로그인 성공", HttpStatus.OK.value());
         return result;
     }
 }
