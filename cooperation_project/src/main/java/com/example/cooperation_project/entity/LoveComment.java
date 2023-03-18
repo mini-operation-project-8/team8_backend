@@ -28,7 +28,6 @@ public class LoveComment extends Timestamped{
         this.comment = comment;
         this.user = user;
     }
-
     public void update(){
         if(this.isLove == false){
             this.isLove = true;

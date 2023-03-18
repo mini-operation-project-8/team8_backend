@@ -1,6 +1,7 @@
 package com.example.cooperation_project.controller;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
+import com.example.cooperation_project.dto.PostCommentResponseDto;
 import com.example.cooperation_project.dto.PostRequestDto;
 import com.example.cooperation_project.dto.PostResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
@@ -34,7 +35,7 @@ public class PostController {
 
     // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{post_Id}")
-    public PostResponseDto getPostsId(@PathVariable Long post_Id){
+    public PostCommentResponseDto getPostsId(@PathVariable Long post_Id){
         return postService.getPostsId(post_Id);
     }
 

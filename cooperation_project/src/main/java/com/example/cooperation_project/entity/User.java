@@ -13,10 +13,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long Id;
 
     @Column(nullable = false)
-    private String username;
+    private String userId;
     @Column(nullable = false)
     private String password;
 
@@ -30,16 +30,10 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
     private List<LoveComment> loveCommentList;
 
-    public User(String username, String password, UserRoleEnum role) {
-        this.username = username;
+    public User(String userId, String password, UserRoleEnum role){
+        this.userId = userId;
         this.password = password;
         this.role = role;
     }
-
-//    public User(String userId, String password, UserRoleEnum role){
-//        this.userId = userId;
-//        this.password = password;
-//        this.role = role;
-//    }
 
 }
