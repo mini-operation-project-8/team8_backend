@@ -1,5 +1,6 @@
 package com.example.cooperation_project.controller;
 
+import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.PostRequestDto;
 import com.example.cooperation_project.dto.PostResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
@@ -34,4 +35,15 @@ public class PostController {
         return postService.getPostsId(post_Id);
     }
 
+    // 게시글 수정
+    @PutMapping("/chitchat/posts/{post_Id}")
+    public PostResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.update(post_Id, postRequestDto, userDetails.getUser());
+    }
+
+    // 게시글 삭제
+    @DeleteMapping("/chitchat/posts/{post_Id}")
+    public MsgCodeResponseDto delete(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.delete(post_Id, userDetails.getUser());
+    }
 }
