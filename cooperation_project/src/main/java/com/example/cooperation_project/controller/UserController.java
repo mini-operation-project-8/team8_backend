@@ -18,12 +18,13 @@ public class UserController {
 
     private final UserService userService;
 
+
     @ResponseBody
     @PostMapping("/chitchat/signup")
     public MsgCodeResponseDto signup(@RequestBody SignupRequestDto signupRequestDto){
         return userService.signup(signupRequestDto);
     }
-
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     @ResponseBody
     @PostMapping("/chitchat/login")
     public MsgCodeResponseDto login(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse httpServletResponse){

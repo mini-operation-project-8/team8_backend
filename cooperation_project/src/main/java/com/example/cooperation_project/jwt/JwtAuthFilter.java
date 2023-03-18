@@ -40,9 +40,9 @@ public class JwtAuthFilter extends OncePerRequestFilter { // Filter를 상속 �
         filterChain.doFilter(request,response);
     }
 
-    public void setAuthentication(String username) {
+    public void setAuthentication(String userId) {
         SecurityContext context = SecurityContextHolder.createEmptyContext(); // SecurityContext 생성
-        Authentication authentication = jwtUtil.createAuthentication(username);  // Authentication 인증 객체에 넣기.
+        Authentication authentication = jwtUtil.createAuthentication(userId);  // Authentication 인증 객체에 넣기.
         context.setAuthentication(authentication);
 
         SecurityContextHolder.setContext(context); // SecurityContextHolder에 넣음.
