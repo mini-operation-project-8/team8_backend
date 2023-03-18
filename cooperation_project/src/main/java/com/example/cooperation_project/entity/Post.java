@@ -45,4 +45,8 @@ public class Post extends Timestamped{
         this.love--;
     }
 
+    public void update(PostRequestDto postRequestDto){
+        this.content = postRequestDto.getContent();
+    }
+
 }
