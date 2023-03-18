@@ -24,7 +24,6 @@ public class LovePost extends Timestamped{
     @Column
     private boolean isLove = false;
 
-
     public LovePost(Post post, User user) {
         this.post = post;
         this.user = user;
