@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -12,11 +13,10 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long userId;
 
-    @Column(nullable = false, unique = true)
-    private String userId;
-
+    @Column(nullable = false)
+    private String username;
     @Column(nullable = false)
     private String password;
 
@@ -24,10 +24,22 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
-    public User(String userId, String password, UserRoleEnum role){
-        this.userId = userId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<LovePost> lovePostList;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private List<LoveComment> loveCommentList;
+
+    public User(String username, String password, UserRoleEnum role) {
+        this.username = username;
         this.password = password;
         this.role = role;
     }
+
+//    public User(String userId, String password, UserRoleEnum role){
+//        this.userId = userId;
+//        this.password = password;
+//        this.role = role;
+//    }
 
 }

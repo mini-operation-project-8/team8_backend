@@ -9,9 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @SpringBootApplication
 public class CooperationProjectApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CooperationProjectApplication.class, args);
     }
-
 }
