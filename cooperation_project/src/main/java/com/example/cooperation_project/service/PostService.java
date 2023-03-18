@@ -14,6 +14,10 @@ import com.example.cooperation_project.repository.LovePostRepository;
 import com.example.cooperation_project.repository.PostRepository;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -38,9 +42,13 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponseDto> getPosts(){
+    public List<PostResponseDto> getPosts(int page, int size, String sortBy, boolean isAsc){
+
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
-        List<Post> posts = postRepository.findAllByOrderByModifiedAtDesc();
+        Page<Post> posts = postRepository.findAll(pageable);
 
         for(Post post : posts){
             postResponseDtos.add(new PostResponseDto(post));
