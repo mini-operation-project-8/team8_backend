@@ -1,6 +1,7 @@
 package com.example.cooperation_project.controller;
 
 import com.example.cooperation_project.dto.CommentRequestDto;
+import com.example.cooperation_project.dto.CommentResponseDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
@@ -24,18 +25,18 @@ public class CommentController {
     //코멘트 작성
     @ResponseBody
     @PostMapping("/comments")
-    public MsgCodeResponseDto createdComment (@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public CommentResponseDto createdComment (@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return commentService.createdComment(commentRequestDto,userDetails.getUser());
     }
 
-    @PutMapping("/comments/{id}")
-    public ResponseEntity<Map<String, HttpStatus>> updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return commentService.update(id, requestDto, userDetails.getUser());
+    @PutMapping("/comments/{post_Id}")
+    public CommentResponseDto updateComment(@PathVariable Long post_Id, @RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return commentService.update(post_Id, requestDto, userDetails.getUser());
     }
 
-    @DeleteMapping("/comments/{id}")
-    public ResponseEntity<Map<String, HttpStatus>> deleteComment(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        ResponseEntity<Map<String,HttpStatus>> responseEntity = commentService.deleteComment(id,userDetails.getUser());
+    @DeleteMapping("/comments/{post_Id}")
+    public ResponseEntity<Map<String, HttpStatus>> deleteComment(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        ResponseEntity<Map<String,HttpStatus>> responseEntity = commentService.deleteComment(post_Id,userDetails.getUser());
         return responseEntity;
     }
 

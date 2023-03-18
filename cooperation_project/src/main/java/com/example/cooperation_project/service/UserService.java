@@ -64,7 +64,7 @@ public class UserService {
         if(!user.getPassword().equals(password)){
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
         }
-        httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
+        httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUserId(), user.getRole()));
 
         MsgCodeResponseDto result = new MsgCodeResponseDto();
         result.setResult("로그인 성공", HttpStatus.OK.value());
