@@ -9,6 +9,7 @@ import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +22,14 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final  JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
 
     private static final String ADMIN_TOKEN = "admin";
 
     @Transactional
     public MsgCodeResponseDto signup(SignupRequestDto signupRequestDto){
         String userId = signupRequestDto.getUserId();
-        String password = signupRequestDto.getPassword();
+        String password = passwordEncoder.encode(signupRequestDto.getPassword());
 
         // 회원 중복 확인
         Optional<User> found = userRepository.findByUserId(userId);
