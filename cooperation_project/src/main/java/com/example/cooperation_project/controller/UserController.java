@@ -26,7 +26,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/chitchat/login")
-    public MsgCodeResponseDto login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
-        return userService.login(loginRequestDto, httpServletResponse);
+    public MsgCodeResponseDto login(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse httpServletResponse){
+        return userService.login(signupRequestDto, httpServletResponse);
     }
 }

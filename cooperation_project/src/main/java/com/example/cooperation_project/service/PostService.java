@@ -93,19 +93,16 @@ public class PostService {
     @Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
-        User user1 = userRepository.findById(user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
-        );
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
 
-        List<LovePost> boardLoveList = user1.getLovePostList();
+        List<LovePost> boardLoveList = user.getLovePostList();
 
         if (user != null) {
 
             for (LovePost lovePost : boardLoveList) {
-                if (lovePost.getPost().getPost_Id() == post.getPost_Id() && lovePost.getUser().getUserId() == user1.getUserId()) {
+                if (lovePost.getPost().getPost_Id() == post.getPost_Id() && lovePost.getUser().getUserId() == user.getUserId()) {
                     if (lovePost.isLove() == false) {
                         lovePost.update();
                         post.LoveOk();
@@ -116,7 +113,7 @@ public class PostService {
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
                 } else {
-                    LovePost lovePost1 = new LovePost(post, user1);
+                    LovePost lovePost1 = new LovePost(post, user);
                     lovePostRepository.save(lovePost1);
                     lovePost1.update();
                     post.LoveOk();
@@ -124,7 +121,7 @@ public class PostService {
                 }
             }
             if(boardLoveList.size() == 0){
-                LovePost lovePost1 = new LovePost(post, user1);
+                LovePost lovePost1 = new LovePost(post, user);
                 lovePostRepository.save(lovePost1);
                 lovePost1.update();
                 post.LoveOk();
