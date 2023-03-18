@@ -6,10 +6,13 @@ import com.example.cooperation_project.dto.PostResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,5 +48,10 @@ public class PostController {
     @DeleteMapping("/chitchat/posts/{post_Id}")
     public MsgCodeResponseDto delete(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return postService.delete(post_Id, userDetails.getUser());
+    }
+
+    @PutMapping("/chitchat/posts/{post_Id}/loves")
+    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return postService.loveOk(post_Id, userDetails.getUser());
     }
 }
