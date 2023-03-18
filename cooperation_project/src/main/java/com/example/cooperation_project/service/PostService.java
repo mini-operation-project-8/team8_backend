@@ -1,6 +1,7 @@
 package com.example.cooperation_project.service;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
+import com.example.cooperation_project.dto.PostCommentResponseDto;
 import com.example.cooperation_project.dto.PostRequestDto;
 import com.example.cooperation_project.dto.PostResponseDto;
 import com.example.cooperation_project.entity.LovePost;
@@ -48,11 +49,11 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public PostResponseDto getPostsId(Long post_Id){
+    public PostCommentResponseDto getPostsId(Long post_Id){
         Post post = postRepository.findById(post_Id).orElseThrow(
                 () -> new ApiException(ExceptionEnum.NOT_FOUND_USER)
         );
-        return new PostResponseDto(post);
+        return new PostCommentResponseDto(post);
     }
     @Transactional
     public PostResponseDto update(Long post_Id, PostRequestDto postRequestDto, User user){
@@ -84,7 +85,7 @@ public class PostService {
     @Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
-        User user1 = userRepository.findById(user.getUserId()).orElseThrow(
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
         Post post = postRepository.findById(id).orElseThrow(

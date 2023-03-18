@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CommentRequestDto {
 
-    private String username;
+    private Long post_Id;
     private String contents;
 
 }
