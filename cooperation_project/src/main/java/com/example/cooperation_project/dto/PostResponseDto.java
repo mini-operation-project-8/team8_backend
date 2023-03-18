@@ -13,7 +13,7 @@ public class PostResponseDto {
     private Long post_Id;
     private String title;
     private String content;
-    private String userId;
+    private Long userId;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
