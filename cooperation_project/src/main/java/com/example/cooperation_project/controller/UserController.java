@@ -18,7 +18,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     @ResponseBody
     @PostMapping("/chitchat/signup")
     public MsgCodeResponseDto signup(@RequestBody SignupRequestDto signupRequestDto){
