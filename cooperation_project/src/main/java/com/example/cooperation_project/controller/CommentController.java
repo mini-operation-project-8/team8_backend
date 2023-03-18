@@ -20,9 +20,7 @@ public class CommentController {
 
     @PostMapping("/comments")
     public MsgCodeResponseDto createdComment (@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-
         return commentService.createdComment(commentRequestDto,userDetails.getUser());
-
     }
 
 
