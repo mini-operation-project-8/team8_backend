@@ -27,15 +27,20 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-    // 게시글 목록 조회
+//    // 게시글 목록 조회
+//    @GetMapping("/chitchat/posts")
+//    public List<PostResponseDto> getPosts( @RequestParam("page") int page,
+//                                           @RequestParam("size") int size,
+//                                           @RequestParam("sortBy") String sortBy,
+//                                           @RequestParam("isAsc") boolean isAsc)
+//    {
+//        return postService.getPosts(page-1, size, sortBy, isAsc);
+//    }
     @GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts( @RequestParam("page") int page,
-                                           @RequestParam("size") int size,
-                                           @RequestParam("sortBy") String sortBy,
-                                           @RequestParam("isAsc") boolean isAsc)
-    {
-        return postService.getPosts(page-1, size, sortBy, isAsc);
+    public List<PostResponseDto> getPosts(){
+        return postService.getPosts();
     }
+
 
     // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{post_Id}")
