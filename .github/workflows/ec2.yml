@@ -40,7 +40,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./cooperation_project/gradlew clean build
       
     - name: Make Directory
       run: mkdir -p deploy
