@@ -37,7 +37,7 @@ jobs:
     # (3) Gradle build  
 
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x ./gradlew
 
     - name: Build with Gradle
       run: ./cooperation_project/gradlew clean build
