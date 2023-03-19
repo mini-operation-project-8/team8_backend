@@ -43,6 +43,9 @@ jobs:
       with:
         gradle-version: 7.5.1
         arguments: build
+    - name: Build with Gradle
+      run: ./gradlew build
+      shell: bash
 
     # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
     - name: Configure AWS credentials
