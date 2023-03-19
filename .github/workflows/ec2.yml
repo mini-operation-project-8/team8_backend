@@ -28,11 +28,11 @@ jobs:
       uses: actions/checkout@v3
 
     # (2) JDK 11 세팅
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
       with:
+        java-version: '17'
         distribution: 'temurin'
-        java-version: '11'
     
     # (3) Gradle build  
 
@@ -41,6 +41,13 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew clean build
+      
+    - name: Make Directory
+      run: mkdir -p deploy
+
+    # Jar 파일 복사
+    - name: Copy Jar
+      run: cp ./build/libs/*.jar ./deploy
 
     # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
     - name: Configure AWS credentials
