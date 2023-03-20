@@ -51,7 +51,6 @@ public class JwtAuthFilter extends OncePerRequestFilter { // Filter를 상속 �
     public void jwtExceptionHandler(HttpServletResponse response, String msg, int statusCode) { // 토큰에 대한 오류가 발생시, 이 메소드를 통해 client에게 커스터마이징 한 exception 처리 값을 알려줌.
         response.setStatus(statusCode);
         response.setContentType("application/json");
-        System.out.println("respons"+response);
         try {
             String json = new ObjectMapper().writeValueAsString(new SecurityExceptionDto(statusCode, msg)); // ObjectMapper()로 변환.
             response.getWriter().write(json);
