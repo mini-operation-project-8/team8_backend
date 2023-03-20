@@ -4,6 +4,10 @@ import com.example.cooperation_project.dto.CommentRequestDto;
 import com.example.cooperation_project.dto.CommentResponseDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.entity.*;
+import com.example.cooperation_project.exception.ApiException;
+import com.example.cooperation_project.exception.ExceptionEnum;
+import com.example.cooperation_project.exception.NotFoundPostException;
+import com.example.cooperation_project.exception.NotFoundUserException;
 import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.CommentRepository;
 import com.example.cooperation_project.repository.LoveCommentRepository;
@@ -29,12 +33,13 @@ public class CommentService {
 
 
     @Transactional
-    public CommentResponseDto createdComment(CommentRequestDto commentRequestDto, User user) {
+    public CommentResponseDto createdComment(Long post_Id, CommentRequestDto commentRequestDto, User user){
+
         user = userRepository.findByUserId(user.getUserId()).orElseThrow(
-                () -> new IllegalArgumentException("사용자가 존재하지 않습니다")
+                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
         );
-        Post post = postRepository.findById(commentRequestDto.getPost_Id()).orElseThrow(
-                () -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
+        Post post = postRepository.findById(post_Id).orElseThrow(
+                () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
         Comment comment = commentRepository.saveAndFlush(new Comment(commentRequestDto, post, user));
         return new CommentResponseDto(comment);

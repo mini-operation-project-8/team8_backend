@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -41,7 +40,6 @@ public class PostController {
         return postService.getPosts();
     }*/
 
-
     // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{post_Id}")
     public PostCommentResponseDto getPostsId(@PathVariable Long post_Id){
@@ -49,7 +47,7 @@ public class PostController {
     }
 
     // 게시글 수정
-    @PutMapping("/chitchat/posts/{post_Id}")
+    @PatchMapping("/chitchat/posts/{post_Id}")
     public PostResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return postService.update(post_Id, postRequestDto, userDetails.getUser());
     }

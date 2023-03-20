@@ -4,14 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class MsgCodeResponseDto {
+    private final String msg;
 
-    private String msg;
-    private int statusCode;
-
-    public void setResult(String msg, int statusCode){
+    public MsgCodeResponseDto(String msg) {
         this.msg = msg;
-        this.statusCode = statusCode;
     }
+
+
+
+
 }
