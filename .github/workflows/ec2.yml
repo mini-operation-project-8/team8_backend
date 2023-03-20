@@ -30,10 +30,6 @@ jobs:
           # 사용하는 자바 버전 17
           java-version: '17'
           distribution: 'temurin'
-  
-      - run: touch cooperation_project/src/main/resources/application.properties
-      - run: echo "${{ secrets.APPLICATION_SECRET }}" > cooperation_project/src/main/resources/application.properties
-      - run: cat cooperation_project/src/main/resources/application.properties
  
       # gradlew에 권한 부여
       - name: Grant execute permission for gradlew
