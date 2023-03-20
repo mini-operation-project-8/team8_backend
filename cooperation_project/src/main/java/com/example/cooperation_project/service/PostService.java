@@ -85,16 +85,14 @@ public class PostService {
 
     @Transactional
     public MsgCodeResponseDto delete(Long post_Id, User user) {
-        MsgCodeResponseDto responseDto = new MsgCodeResponseDto();
+        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("");
         Post post = postRepository.findById(post_Id).orElseThrow(
                 () -> new ApiException(ExceptionEnum.NOT_FOUND_POST_ALL)
         );
         if (post.getUser().getUserId().equals(user.getUserId()) || user.getRole() == UserRoleEnum.ADMIN) {
             postRepository.deleteById(post_Id);
-            responseDto.setResult("게시글 삭제 성공", HttpStatus.OK.value());
             return responseDto;
         }
-        responseDto.setResult("게시글 삭제 실패", HttpStatus.BAD_REQUEST.value());
         return responseDto;
     }
     @Transactional
