@@ -14,11 +14,11 @@ public class SignupRequestDto {
 
     @NotBlank(message = "userId를 입력해주세요.")
     @Size(min = 4, max = 10)
-    @Pattern(regexp = "[a-z0-9]+")
+    @Pattern(regexp = "[a-z0-9]+", message = "영어 소문자랑 숫자를 이용해 4-10자 아이디를 입력해주세요.")
     private  String userId;
 
     @NotBlank(message = "password를 입력해주세요.")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+])[a-zA-Z\\d!@#$%^&*()_+]{8,15}$")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+])[a-zA-Z\\d!@#$%^&*()_+]{8,15}$", message = "숫자와 영어 소문자와 특수문자를 사용해 8-15자리 비밀번호를 입력해주세요.")
     private String password;
 //    (?=.*[a-z]): 소문자가 적어도 1개 이상 포함되어야 합니다.
 //            (?=.*[A-Z]): 대문자가 적어도 1개 이상 포함되어야 합니다.
