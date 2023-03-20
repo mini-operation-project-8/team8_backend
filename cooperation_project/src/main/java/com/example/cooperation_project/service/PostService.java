@@ -37,12 +37,27 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
+//    @Transactional(readOnly = true)
+//    public List<PostResponseDto> getPosts(int page, int size, String sortBy, boolean isAsc){
+//
+//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+//        Sort sort = Sort.by(direction, sortBy);
+//        Pageable pageable = PageRequest.of(page, size, sort);
+//        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+//        Page<Post> posts = postRepository.findAll(pageable);
+//
+//        for(Post post : posts){
+//            postResponseDtos.add(new PostResponseDto(post));
+//        }
+//        return postResponseDtos;
+//    }
+
     @Transactional(readOnly = true)
     public List<PostResponseDto> getPosts(){
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
-        List<Post> posts = postRepository.findAllByOrderByModifiedAtDesc();
+        List<Post> postList = postRepository.findAllByOrderByModifiedAtDesc();
 
-        for(Post post : posts){
+        for(Post post : postList){
             postResponseDtos.add(new PostResponseDto(post));
         }
         return postResponseDtos;
@@ -85,19 +100,16 @@ public class PostService {
     @Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
-        User user1 = userRepository.findById(user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
-        );
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
 
-        List<LovePost> boardLoveList = user1.getLovePostList();
+        List<LovePost> boardLoveList = user.getLovePostList();
 
         if (user != null) {
 
             for (LovePost lovePost : boardLoveList) {
-                if (lovePost.getPost().getPost_Id() == post.getPost_Id() && lovePost.getUser().getUserId() == user1.getUserId()) {
+                if (lovePost.getPost().getPost_Id() == post.getPost_Id() && lovePost.getUser().getUserId() == user.getUserId()) {
                     if (lovePost.isLove() == false) {
                         lovePost.update();
                         post.LoveOk();
@@ -108,7 +120,7 @@ public class PostService {
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
                 } else {
-                    LovePost lovePost1 = new LovePost(post, user1);
+                    LovePost lovePost1 = new LovePost(post, user);
                     lovePostRepository.save(lovePost1);
                     lovePost1.update();
                     post.LoveOk();
@@ -116,7 +128,7 @@ public class PostService {
                 }
             }
             if(boardLoveList.size() == 0){
-                LovePost lovePost1 = new LovePost(post, user1);
+                LovePost lovePost1 = new LovePost(post, user);
                 lovePostRepository.save(lovePost1);
                 lovePost1.update();
                 post.LoveOk();

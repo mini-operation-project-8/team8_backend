@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,13 +21,12 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/chitchat/signup")
-    public MsgCodeResponseDto signup(@RequestBody SignupRequestDto signupRequestDto){
+    public MsgCodeResponseDto signup(@RequestBody @Valid SignupRequestDto signupRequestDto){
         return userService.signup(signupRequestDto);
     }
-
     @ResponseBody
     @PostMapping("/chitchat/login")
-    public MsgCodeResponseDto login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse){
-        return userService.login(loginRequestDto, httpServletResponse);
+    public MsgCodeResponseDto login(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse httpServletResponse){
+        return userService.login(signupRequestDto, httpServletResponse);
     }
 }

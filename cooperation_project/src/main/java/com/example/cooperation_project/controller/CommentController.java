@@ -21,7 +21,6 @@ public class CommentController {
 
     private final CommentService commentService;
 
-
     //코멘트 작성
     @ResponseBody
     @PostMapping("/comments")

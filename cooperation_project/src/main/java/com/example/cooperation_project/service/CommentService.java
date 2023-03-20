@@ -74,19 +74,16 @@ public class CommentService {
     @Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
-        User user1 = userRepository.findById(user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
-        );
         Comment comment = commentRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
 
-        List<LoveComment> commentLoveList = user1.getLoveCommentList();
+        List<LoveComment> commentLoveList = user.getLoveCommentList();
 
         if (user != null) {
 
             for (LoveComment loveComment : commentLoveList) {
-                if (loveComment.getUser().getUserId() == comment.getUser().getUserId() && loveComment.getUser().getUserId() == user1.getUserId()) {
+                if (loveComment.getUser().getUserId() == comment.getUser().getUserId() && loveComment.getUser().getUserId() == user.getUserId()) {
                     if (loveComment.isLove() == false) {
                         loveComment.update();
                         comment.LoveOk();
@@ -97,7 +94,7 @@ public class CommentService {
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
                 } else {
-                    LoveComment commentLove = new LoveComment(comment, user1);
+                    LoveComment commentLove = new LoveComment(comment, user);
                     loveCommentRepository.save(commentLove);
                     commentLove.update();
                     comment.LoveOk();
@@ -105,7 +102,7 @@ public class CommentService {
                 }
             }
             if(commentLoveList.size() == 0){
-                LoveComment commentLove = new LoveComment(comment, user1);
+                LoveComment commentLove = new LoveComment(comment, user);
                 loveCommentRepository.save(commentLove);
                 commentLove.update();
                 comment.LoveOk();
