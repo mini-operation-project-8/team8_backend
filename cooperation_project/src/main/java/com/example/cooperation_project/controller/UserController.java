@@ -19,13 +19,12 @@ public class UserController {
 
     private final UserService userService;
 
-    @ResponseBody
-    @PostMapping("/chitchat/signup")
+    @PostMapping("/chitchat/auth/signup")
     public MsgCodeResponseDto signup(@RequestBody @Valid SignupRequestDto signupRequestDto){
         return userService.signup(signupRequestDto);
     }
-    @ResponseBody
-    @PostMapping("/chitchat/login")
+
+    @PostMapping("/chitchat/auth/login")
     public MsgCodeResponseDto login(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse httpServletResponse){
         return userService.login(signupRequestDto, httpServletResponse);
     }

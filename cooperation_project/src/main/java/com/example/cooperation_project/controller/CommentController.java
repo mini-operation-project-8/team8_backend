@@ -3,6 +3,9 @@ package com.example.cooperation_project.controller;
 import com.example.cooperation_project.dto.CommentRequestDto;
 import com.example.cooperation_project.dto.CommentResponseDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
+import com.example.cooperation_project.exception.ApiException;
+import com.example.cooperation_project.exception.NotFoundPostException;
+import com.example.cooperation_project.exception.NotFoundUserException;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -24,23 +27,43 @@ public class CommentController {
     //코멘트 작성
     @ResponseBody
     @PostMapping("/comments")
-    public CommentResponseDto createdComment (@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        return commentService.createdComment(commentRequestDto,userDetails.getUser());
+    public ResponseEntity<Object> createdComment(@RequestBody CommentRequestDto commentRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        CommentResponseDto dto = null;
+
+        try{
+             dto =
+                commentService.createdComment(commentRequestDto, userDetails.getUser());
+        }catch (NotFoundPostException | NotFoundUserException e ){
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        return ResponseEntity.ok(dto);
     }
 
-    @PutMapping("/comments/{post_Id}")
-    public CommentResponseDto updateComment(@PathVariable Long post_Id, @RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    @PutMapping("/{post_Id}/comments")
+    public CommentResponseDto updateComment(@PathVariable Long post_Id,
+        @RequestBody CommentRequestDto requestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return commentService.update(post_Id, requestDto, userDetails.getUser());
     }
 
     @DeleteMapping("/comments/{post_Id}")
-    public ResponseEntity<Map<String, HttpStatus>> deleteComment(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        ResponseEntity<Map<String,HttpStatus>> responseEntity = commentService.deleteComment(post_Id,userDetails.getUser());
+    public ResponseEntity<Map<String, HttpStatus>> deleteComment(@PathVariable Long post_Id,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        ResponseEntity<Map<String, HttpStatus>> responseEntity = commentService.deleteComment(
+            post_Id, userDetails.getUser());
+
         return responseEntity;
     }
 
     @PutMapping("/comments/{id}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> BoardLoveOk(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<Map<String, HttpStatus>> BoardLoveOk(@PathVariable Long id,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return commentService.loveOk(id, userDetails.getUser());
     }
 

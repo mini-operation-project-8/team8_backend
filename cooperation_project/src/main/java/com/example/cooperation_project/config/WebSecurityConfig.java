@@ -60,9 +60,11 @@ public class WebSecurityConfig {
         // 기본 설정인 Session 방식은 사용하지 않고 JWT 방식을 사용하기 위한 설정
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
+        //consider : .antMatchers("/chitchat/**").permitAll() -> .antMatchers("/chitchat/auth/**").permitAll()
+
         http.authorizeRequests()
-                .antMatchers("/chitchat/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/games/").permitAll()
+                .antMatchers("/chitchat/login").permitAll()
+                .antMatchers("/chitchat/signup").permitAll()    // 로그인, 회원 가입 열어줌.
                 .anyRequest().authenticated()
                 .and().cors()
                 // JWT 인증/인가를 사용하기 위한 설정
