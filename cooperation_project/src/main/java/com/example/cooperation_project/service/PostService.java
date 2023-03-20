@@ -37,20 +37,20 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-//    @Transactional(readOnly = true)
-//    public List<PostResponseDto> getPosts(int page, int size, String sortBy, boolean isAsc){
-//
-//        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-//        Sort sort = Sort.by(direction, sortBy);
-//        Pageable pageable = PageRequest.of(page, size, sort);
-//        List<PostResponseDto> postResponseDtos = new ArrayList<>();
-//        Page<Post> posts = postRepository.findAll(pageable);
-//
-//        for(Post post : posts){
-//            postResponseDtos.add(new PostResponseDto(post));
-//        }
-//        return postResponseDtos;
-//    }
+    /*@Transactional(readOnly = true)
+    public List<PostResponseDto> getPosts(int page, int size, String sortBy, boolean isAsc){
+
+        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+        Page<Post> posts = postRepository.findAll(pageable);
+
+        for(Post post : posts){
+            postResponseDtos.add(new PostResponseDto(post));
+        }
+        return postResponseDtos;
+    }*/
 
     @Transactional(readOnly = true)
     public List<PostResponseDto> getPosts(){

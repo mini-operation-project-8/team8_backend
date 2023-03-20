@@ -47,6 +47,13 @@ dependencies {
     testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
 }
 
+<<<<<<< HEAD
+=======
+jar {
+    enabled = false
+}
+
+>>>>>>> master
 //tasks.named('test') {
 //    useJUnitPlatform()
 //}
