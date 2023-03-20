@@ -61,7 +61,7 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/api/user/**").permitAll()
+                .antMatchers("/chitchat/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/games/").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
