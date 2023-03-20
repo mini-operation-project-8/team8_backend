@@ -48,15 +48,13 @@ public class UserService {
 
         User user = new User(userId, password, role);
         userRepository.save(user);
-        MsgCodeResponseDto result = new MsgCodeResponseDto();
-        result.setResult("회원가입 성공", HttpStatus.OK.value());
+        MsgCodeResponseDto result = new MsgCodeResponseDto("회원가입 성공");
         return result;
     }
 
     @Transactional
     public MsgCodeResponseDto login(SignupRequestDto signupRequestDto , HttpServletResponse httpServletResponse){
         String userId = signupRequestDto.getUserId();
-        String password = signupRequestDto.getPassword();
 
         // 사용자 확인
         User user = userRepository.findByUserId(userId).orElseThrow(
@@ -70,8 +68,7 @@ public class UserService {
         }
         httpServletResponse.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUserId(), user.getRole()));
 
-        MsgCodeResponseDto result = new MsgCodeResponseDto();
-        result.setResult("로그인 성공", HttpStatus.OK.value());
+        MsgCodeResponseDto result = new MsgCodeResponseDto("로그인 성공");
         return result;
     }
 }

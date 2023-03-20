@@ -23,7 +23,6 @@ public class UserController {
     public MsgCodeResponseDto signup(@RequestBody @Valid SignupRequestDto signupRequestDto){
         return userService.signup(signupRequestDto);
     }
-
     @PostMapping("/chitchat/auth/login")
     public MsgCodeResponseDto login(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse httpServletResponse){
         return userService.login(signupRequestDto, httpServletResponse);
