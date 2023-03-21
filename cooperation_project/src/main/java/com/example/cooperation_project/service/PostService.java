@@ -101,14 +101,14 @@ public class PostService {
         }
     }
 
-    public Page<Post> getProducts(ReqPostPageableDto dto) {
+    /*public Page<Post> getProducts(ReqPostPageableDto dto) {
 
         Pageable pageable = configPageAble(dto);
 
         Page<Post> products = postRepository.findAllByOrderByModifiedAtDesc(pageable);
 
         return products;
-    }
+    }*/
 
     private Pageable configPageAble(ReqPostPageableDto dto){
 

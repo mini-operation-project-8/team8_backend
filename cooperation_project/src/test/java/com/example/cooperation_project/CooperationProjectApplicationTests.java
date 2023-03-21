@@ -16,7 +16,7 @@ class CooperationProjectApplicationTests {
     void contextLoads() {
         ReqPostPageableDto dto = new ReqPostPageableDto("post_Id",true,4,10);
 
-        postService.getProducts(dto);
+       // postService.getProducts(dto);
     }
 
     @Test
