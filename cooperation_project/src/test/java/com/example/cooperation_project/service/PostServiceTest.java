@@ -9,7 +9,5 @@ class PostServiceTest {
     @Test
     void getProducts() {
 
-
-
     }
 }

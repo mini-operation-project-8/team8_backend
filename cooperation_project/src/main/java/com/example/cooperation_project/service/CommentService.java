@@ -82,7 +82,7 @@ public class CommentService {
         }
     }
 
-    @Transactional
+    /*@Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
         Comment comment = commentRepository.findById(id).orElseThrow(
@@ -125,7 +125,7 @@ public class CommentService {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
         return null;
-    }
+    }*/
 
     private boolean isMatchComment(Comment comment, User user) {
 

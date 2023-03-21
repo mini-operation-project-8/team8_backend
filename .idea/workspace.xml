@@ -6,8 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostCommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostCommentResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LoveComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LoveComment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LovePost.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LovePost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LoveCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LoveCommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LovePostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LovePostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/service/PostServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/service/PostServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +102,7 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.example.cooperation_project.repository" />
       <recent name="com.example.cooperation_project.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -119,28 +131,21 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="PostServiceTest.getProducts" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/cooperation_project" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.example.cooperation_project.service.PostServiceTest.getProducts&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="CooperationProjectApplicationTests.LovePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="team8_backend2.cooperation_project.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cooperation_project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.cooperation_project" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.CooperationProjectApplicationTests" />
+      <option name="METHOD_NAME" value="LovePost" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="CooperationProjectApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="team8_backend2.cooperation_project.test" />
@@ -174,7 +179,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CooperationProjectApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CooperationProjectApplicationTests.postCountAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="team8_backend2.cooperation_project.test" />
       <extension name="coverage">
         <pattern>
@@ -184,23 +189,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.cooperation_project" />
       <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.CooperationProjectApplicationTests" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="METHOD_NAME" value="postCountAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PostServiceTest.getProducts" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CooperationProjectApplicationTests.testCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="team8_backend2.cooperation_project.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.cooperation_project.service.*" />
+          <option name="PATTERN" value="com.example.cooperation_project.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.cooperation_project.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.service.PostServiceTest" />
-      <option name="METHOD_NAME" value="getProducts" />
+      <option name="PACKAGE_NAME" value="com.example.cooperation_project" />
+      <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.CooperationProjectApplicationTests" />
+      <option name="METHOD_NAME" value="testCount" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -285,11 +290,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CooperationProjectApplicationTests.testCount" />
+        <item itemvalue="JUnit.CooperationProjectApplicationTests.postCountAll" />
+        <item itemvalue="JUnit.CooperationProjectApplicationTests.LovePost" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.pageablePost" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.contextLoads" />
-        <item itemvalue="JUnit.CooperationProjectApplicationTests.test" />
-        <item itemvalue="JUnit.PostServiceTest.getProducts" />
-        <item itemvalue="Gradle.PostServiceTest.getProducts" />
       </list>
     </recent_temporary>
   </component>
@@ -382,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679389279376</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="CommentService 메소드 시그니처 예외 명시">
+      <created>1679389841882</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1679389841882</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +422,8 @@
     <MESSAGE value="jwtAuthFilter shouldNotFilter 추가" />
     <MESSAGE value="PostController getPosts 요청 reqParam으로 변경" />
     <MESSAGE value="UserService 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="UserService 리팩토링" />
+    <MESSAGE value="CommentService 메소드 시그니처 예외 명시" />
+    <option name="LAST_COMMIT_MESSAGE" value="CommentService 메소드 시그니처 예외 명시" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

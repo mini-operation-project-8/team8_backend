@@ -14,15 +14,21 @@ import com.example.cooperation_project.exception.NotFoundPostException;
 import com.example.cooperation_project.repository.LovePostRepository;
 import com.example.cooperation_project.repository.PostRepository;
 import com.example.cooperation_project.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,25 +37,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final LovePostRepository lovePostRepository;
+    private final LovePostRepository lovePostRepo;
 
     @Transactional
     public PostResponseDto createPost(PostRequestDto requestDto, User user) {
 
         Post post = postRepository.save(new Post(requestDto, user));
 
-        return new PostResponseDto(post);
+        return new PostResponseDto(post,0L);
     }
 
-    @Transactional(readOnly = true)
-    public List<PostResponseDto> getPosts() {
-
-        List<Post> postList = postRepository
-            .findAllByOrderByModifiedAtDesc();
-
-        return postList.stream()
-            .map(PostResponseDto::new).toList();
-    }
 
     @Transactional(readOnly = true)
     public PostCommentResponseDto getPostsId(Long postId) throws NotFoundPostException {
@@ -69,10 +66,12 @@ public class PostService {
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
+        Long numOfLove = lovePostRepo.countNumOfLoveOnPost(postId);
+
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
             post.update(postRequestDto);
 
-            return new PostResponseDto(post);
+            return new PostResponseDto(post,numOfLove);
 
         } else {
 
@@ -81,10 +80,8 @@ public class PostService {
     }
 
     @Transactional
-    public MsgCodeResponseDto delete(Long postId, User user)
+    public void delete(Long postId, User user)
         throws NotFoundPostException, NotAuthException {
-
-        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("게시물을 삭제했습니다.");
 
         Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
@@ -92,7 +89,7 @@ public class PostService {
 
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
             postRepository.deleteById(postId);
-            return responseDto;
+
 
         } else {
             throw new NotAuthException("해당 권한이 없습니다");
@@ -100,11 +97,28 @@ public class PostService {
 
     }
 
-    public List<PostResponseDto> getProductsOrderByModified(ReqPostPageableDto dto) {
+    @Transactional(readOnly = true)
+    public List<PostResponseDto> getPageOfPost(ReqPostPageableDto dto) {
 
-        return postRepository
-            .findAllByOrderByModifiedAtDesc(configPageAble(dto))
-            .stream().map(PostResponseDto::new).toList();
+        Page<Post> page = postRepository
+            .findAllByOrderByModifiedAtDesc(configPageAble(dto));
+
+        List<PostResponseDto> result = new ArrayList<>();
+
+        for(Post p : page){
+
+            Long numOfLove = lovePostRepo.countNumOfLoveOnPost(p.getId());
+
+            result.add(new PostResponseDto(p,numOfLove));
+        }
+
+        return result;
+    }
+
+    @Transactional(readOnly = true)
+    public Long getCountAllPosts(){
+
+        return postRepository.countPosts();
     }
 
     private Pageable configPageAble(ReqPostPageableDto dto) {
@@ -115,12 +129,16 @@ public class PostService {
         return PageRequest.of(dto.getPage() - 1, dto.getSize(), sort);
     }
 
-    @Transactional
+
+
+    /*@Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
         Post post = postRepository.findById(id).orElseThrow(
-            () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
+            () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
+
+        Objects.requireNonNull(user);
 
         List<LovePost> boardLoveList = user.getLovePostList();
 
@@ -158,7 +176,7 @@ public class PostService {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
         return null;
-    }
+    }*/
 
     private boolean isMatchUser(Post post, User user) {
 
