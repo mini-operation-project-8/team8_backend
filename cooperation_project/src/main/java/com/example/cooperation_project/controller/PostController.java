@@ -30,7 +30,7 @@ public class PostController {
     }
 
     @GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
+    public List<PostResponseDto> getPosts (ReqPostPageableDto dto){
 
        return postService.getProductsOrderByModified(dto);
     }

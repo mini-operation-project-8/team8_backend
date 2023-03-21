@@ -6,6 +6,7 @@ import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
 import com.example.cooperation_project.exception.DuplicateUserException;
+import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,10 +28,10 @@ public class UserService {
     private static final String ADMIN_TOKEN = "admin";
 
     @Transactional
-    public MsgCodeResponseDto signup(SignupRequestDto signupRequestDto){
+    public MsgCodeResponseDto signup(SignupRequestDto dto){
 
-        String userId = signupRequestDto.getUserId();
-        String password = passwordEncoder.encode(signupRequestDto.getPassword());
+        String userId = dto.getUserId();
+        String password = passwordEncoder.encode(dto.getPassword());
 
         Optional<User> found = userRepository.findByUserId(userId);
 
@@ -40,10 +41,7 @@ public class UserService {
 
         UserRoleEnum role = UserRoleEnum.USER;
 
-        if(signupRequestDto.isAdmin()){
-            if(!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)){
-                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능 합니다.");
-            }
+        if(isAdmin(dto)){
             role = UserRoleEnum.ADMIN;
         }
 
@@ -51,8 +49,7 @@ public class UserService {
 
         userRepository.save(user);
 
-        MsgCodeResponseDto result = new MsgCodeResponseDto("회원가입 성공");
-        return result;
+        return new MsgCodeResponseDto("회원가입 성공");
     }
 
     @Transactional
@@ -71,6 +68,11 @@ public class UserService {
 
         MsgCodeResponseDto result = new MsgCodeResponseDto("로그인 성공");
         return result;
+    }
+
+    private boolean isAdmin(SignupRequestDto dto){
+
+        return dto.isAdmin() && dto.getAdminToken().equals(ADMIN_TOKEN);
     }
 
 }
