@@ -12,7 +12,7 @@ public class LovePost extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lovepostId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
