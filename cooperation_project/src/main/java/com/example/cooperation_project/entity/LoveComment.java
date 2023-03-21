@@ -15,7 +15,7 @@ public class LoveComment extends Timestamped{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USERID", nullable = false)
     private User user;
 
     @ManyToOne

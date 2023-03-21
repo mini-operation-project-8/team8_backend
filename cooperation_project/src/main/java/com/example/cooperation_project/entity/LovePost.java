@@ -15,11 +15,11 @@ public class LovePost extends Timestamped{
     private Long lovepostId;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USERID", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "POSTG_ID",nullable = false)
+    @JoinColumn(name = "POSTGID",nullable = false)
     private Post post;
     @Column
     private boolean isLove = false;

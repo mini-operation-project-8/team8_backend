@@ -15,7 +15,7 @@ public class ApiUseTime {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USERID", nullable = false)
     private User user;
     @Column(nullable = false)
     private Long totalTime;
