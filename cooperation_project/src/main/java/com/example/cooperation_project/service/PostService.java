@@ -54,9 +54,9 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public PostCommentResponseDto getPostsId(Long post_Id) throws NotFoundPostException {
+    public PostCommentResponseDto getPostsId(Long postId) throws NotFoundPostException {
 
-        Post post = postRepository.findById(post_Id).orElseThrow(
+        Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
@@ -64,10 +64,10 @@ public class PostService {
     }
 
     @Transactional
-    public PostResponseDto update(Long post_Id, PostRequestDto postRequestDto, User user)
+    public PostResponseDto update(Long postId, PostRequestDto postRequestDto, User user)
         throws NotFoundPostException, NotAuthException {
 
-        Post post = postRepository.findById(post_Id).orElseThrow(
+        Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
@@ -83,15 +83,15 @@ public class PostService {
     }
 
     @Transactional
-    public MsgCodeResponseDto delete(Long post_Id, User user) {
+    public MsgCodeResponseDto delete(Long postId, User user) {
         MsgCodeResponseDto responseDto = new MsgCodeResponseDto("");
 
-        Post post = postRepository.findById(post_Id).orElseThrow(
+        Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
-            postRepository.deleteById(post_Id);
+            postRepository.deleteById(postId);
             return responseDto;
         } else {
             throw new NotAuthException("해당 권한이 없습니다");

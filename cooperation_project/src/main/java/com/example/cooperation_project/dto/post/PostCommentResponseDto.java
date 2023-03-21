@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class PostCommentResponseDto {
-    private Long post_Id;
+    private Long postId;
     private String title;
     private String content;
     private Long userId;
@@ -22,7 +22,7 @@ public class PostCommentResponseDto {
     private List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
 
     public PostCommentResponseDto(Post post){
-        this.post_Id = post.getId();
+        this.postId = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.userId = post.getUser().getId();
