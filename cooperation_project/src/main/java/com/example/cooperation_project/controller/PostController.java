@@ -29,7 +29,7 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-    @GetMapping("/chitchat/postAll")
+    @GetMapping("/chitchat/posts")
     public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
 
        return postService.getProductsOrderByModified(dto);
