@@ -1,7 +1,7 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.CommentRequestDto;
-import com.example.cooperation_project.dto.CommentResponseDto;
+import com.example.cooperation_project.dto.comment.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.entity.*;
 import com.example.cooperation_project.exception.*;
 import com.example.cooperation_project.repository.CommentRepository;
@@ -50,7 +50,7 @@ public class CommentService {
                 () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
@@ -67,7 +67,7 @@ public class CommentService {
                 () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
             commentRepository.deleteById(comment_Id);
             return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {

@@ -1,22 +1,19 @@
 package com.example.cooperation_project.service;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.PostCommentResponseDto;
-import com.example.cooperation_project.dto.PostRequestDto;
-import com.example.cooperation_project.dto.PostResponseDto;
-import com.example.cooperation_project.dto.ReqPostPageableDto;
+import com.example.cooperation_project.dto.post.PostCommentResponseDto;
+import com.example.cooperation_project.dto.post.PostRequestDto;
+import com.example.cooperation_project.dto.post.PostResponseDto;
+import com.example.cooperation_project.dto.post.ReqPostPageableDto;
 import com.example.cooperation_project.entity.LovePost;
 import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
-import com.example.cooperation_project.exception.ApiException;
-import com.example.cooperation_project.exception.ExceptionEnum;
 import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.exception.NotFoundPostException;
 import com.example.cooperation_project.repository.LovePostRepository;
 import com.example.cooperation_project.repository.PostRepository;
 import com.example.cooperation_project.repository.UserRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -101,13 +98,11 @@ public class PostService {
         }
     }
 
-    public Page<Post> getProducts(ReqPostPageableDto dto) {
+    public List<PostResponseDto> getProductsOrderByModified(ReqPostPageableDto dto) {
 
-        Pageable pageable = configPageAble(dto);
-
-        Page<Post> products = postRepository.findAllByOrderByModifiedAtDesc(pageable);
-
-        return products;
+        return postRepository
+            .findAllByOrderByModifiedAtDesc(configPageAble(dto))
+            .stream().map(PostResponseDto::new).toList();
     }
 
     private Pageable configPageAble(ReqPostPageableDto dto){
@@ -130,7 +125,7 @@ public class PostService {
         if (user != null) {
 
             for (LovePost lovePost : boardLoveList) {
-                if (lovePost.getPost().getPost_Id() == post.getPost_Id()
+                if (lovePost.getPost().getId() == post.getId()
                     && lovePost.getUser().getUserId() == user.getUserId()) {
                     if (lovePost.isLove() == false) {
                         lovePost.update();

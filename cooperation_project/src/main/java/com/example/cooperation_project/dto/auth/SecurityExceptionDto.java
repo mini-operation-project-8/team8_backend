@@ -1,4 +1,4 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.auth;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
