@@ -81,7 +81,9 @@ public class PostService {
     }
 
     @Transactional
-    public MsgCodeResponseDto delete(Long postId, User user) {
+    public MsgCodeResponseDto delete(Long postId, User user)
+        throws NotFoundPostException, NotAuthException {
+
         MsgCodeResponseDto responseDto = new MsgCodeResponseDto("게시물을 삭제했습니다.");
 
         Post post = postRepository.findById(postId).orElseThrow(
@@ -91,9 +93,11 @@ public class PostService {
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
             postRepository.deleteById(postId);
             return responseDto;
+
         } else {
             throw new NotAuthException("해당 권한이 없습니다");
         }
+
     }
 
     public List<PostResponseDto> getProductsOrderByModified(ReqPostPageableDto dto) {
@@ -103,12 +107,12 @@ public class PostService {
             .stream().map(PostResponseDto::new).toList();
     }
 
-    private Pageable configPageAble(ReqPostPageableDto dto){
+    private Pageable configPageAble(ReqPostPageableDto dto) {
 
-        Sort.Direction direction = dto.isAsc()? Direction.ASC : Direction.DESC;
-        Sort sort = Sort.by(direction,dto.getSortBy());
+        Sort.Direction direction = dto.isAsc() ? Direction.ASC : Direction.DESC;
+        Sort sort = Sort.by(direction, dto.getSortBy());
 
-        return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
+        return PageRequest.of(dto.getPage() - 1, dto.getSize(), sort);
     }
 
     @Transactional
