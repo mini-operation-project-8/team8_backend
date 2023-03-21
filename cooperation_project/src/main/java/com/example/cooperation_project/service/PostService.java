@@ -71,14 +71,14 @@ public class PostService {
         return new PostCommentResponseDto(post);
     }
     @Transactional
-    public PostResponseDto update(Long post_Id, PostRequestDto postRequestDto, User user){
+    public PostCommentResponseDto update(Long post_Id, PostRequestDto postRequestDto, User user){
         Post post = postRepository.findById(post_Id).orElseThrow(
                 () -> new ApiException(ExceptionEnum.NOT_FOUND_POST_ALL)
         );
 
         if(post.getUser().getUserId().equals(user.getUserId()) || user.getRole() == UserRoleEnum.ADMIN){
             post.update(postRequestDto);
-            return new PostResponseDto(post);
+            return new PostCommentResponseDto(post);
         }
         return null;
     }
