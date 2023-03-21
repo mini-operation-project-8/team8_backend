@@ -61,7 +61,8 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/chitchat/auth/**").permitAll()
+                .antMatchers("/chitchat/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/games/").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 // JWT 인증/인가를 사용하기 위한 설정
