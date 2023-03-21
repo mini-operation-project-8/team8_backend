@@ -91,21 +91,24 @@ public class PostService {
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
 
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
             List<Comment> commentList = post.getCommentList();
             for(Comment comment: commentList){
-                List<LoveComment> loveComments = user.getLoveCommentList();
+                List<LoveComment> loveComments = user1.getLoveCommentList();
                 for(LoveComment loveComment: loveComments){
-                    if(user.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
+                    if(user1.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
                         loveCommentRepository.delete(loveComment);
                     }
                 }
                 commentRepository.delete(comment);
             }
-            List<LovePost> lovePosts = user.getLovePostList();
+            List<LovePost> lovePosts = user1.getLovePostList();
             for(LovePost lovePost: lovePosts){
-                if(user.getId() == lovePost.getUser().getId() && lovePost.getPost().getId() == post.getId()){
+                if(user1.getId() == lovePost.getUser().getId() && lovePost.getPost().getId() == post.getId()){
                     lovePostRepository.delete(lovePost);
                 }
             }
