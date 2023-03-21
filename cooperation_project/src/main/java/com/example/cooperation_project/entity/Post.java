@@ -14,7 +14,7 @@ import lombok.ToString.Exclude;
 @NoArgsConstructor
 public class Post extends Timestamped{
 
-    @Id @Column(name = "post_Id")
+    @Id @Column(name = "postId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,7 +26,7 @@ public class Post extends Timestamped{
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @JoinColumn(name = "USERID", nullable = false)
     private User user;
     @Column
     private int love = 0;
