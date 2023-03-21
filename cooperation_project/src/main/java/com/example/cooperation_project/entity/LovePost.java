@@ -19,7 +19,7 @@ public class LovePost extends Timestamped{
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "POSTG_ID",nullable = false)
+    @JoinColumn(name = "POST_ID",nullable = false)
     private Post post;
     @Column
     private boolean isLove = false;
