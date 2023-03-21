@@ -1,11 +1,13 @@
 package com.example.cooperation_project.controller;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.PostCommentResponseDto;
-import com.example.cooperation_project.dto.PostRequestDto;
-import com.example.cooperation_project.dto.PostResponseDto;
+import com.example.cooperation_project.dto.post.PostCommentResponseDto;
+import com.example.cooperation_project.dto.post.PostRequestDto;
+import com.example.cooperation_project.dto.post.PostResponseDto;
+import com.example.cooperation_project.dto.post.ReqPostPageableDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.PostService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,44 +24,45 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/chitchat/posts")
-    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-    // 게시글 목록 조회
-    /*@GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts( @RequestParam("page") int page,
-                                           @RequestParam("size") int size,
-                                           @RequestParam("sortBy") String sortBy,
-                                           @RequestParam("isAsc") boolean isAsc)
-    {
-        return postService.getPosts(page-1, size, sortBy, isAsc);
-    }
+
     @GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts(){
-        return postService.getPosts();
-    }*/
+    public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
+
+       return postService.getProductsOrderByModified(dto);
+    }
 
     // 선택한 게시글 조회
-    @GetMapping("/chitchat/posts/{post_Id}")
-    public PostCommentResponseDto getPostsId(@PathVariable Long post_Id){
-        return postService.getPostsId(post_Id);
+    @GetMapping("/chitchat/posts/{postId}")
+    public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
+        return postService.getPostsId(postId);
     }
 
     // 게시글 수정
-    @PatchMapping("/chitchat/posts/{post_Id}")
-    public PostCommentResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        return postService.update(post_Id, postRequestDto, userDetails.getUser());
+    @PatchMapping("/chitchat/posts/{postId}")
+    public PostResponseDto update(@PathVariable Long postId,
+        @RequestBody PostRequestDto postRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return postService.update(postId, postRequestDto, userDetails.getUser());
     }
 
     // 게시글 삭제
-    @DeleteMapping("/chitchat/posts/{post_Id}")
-    public MsgCodeResponseDto delete(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        return postService.delete(post_Id, userDetails.getUser());
+    @DeleteMapping("/chitchat/posts/{postId}")
+    public MsgCodeResponseDto delete(@PathVariable Long postId,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return postService.delete(postId, userDetails.getUser());
     }
 
-    @PutMapping("/chitchat/posts/{post_Id}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return postService.loveOk(post_Id, userDetails.getUser());
+    @PutMapping("/chitchat/posts/{postId}/loves")
+    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long postId,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return postService.loveOk(postId, userDetails.getUser());
     }
 }

@@ -1,21 +1,23 @@
 package com.example.cooperation_project.entity;
 
-import com.example.cooperation_project.dto.PostRequestDto;
+import com.example.cooperation_project.dto.post.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.ToString;
+import lombok.ToString.Exclude;
 
 @Getter
 @Entity
 @NoArgsConstructor
 public class Post extends Timestamped{
 
-    @Id
+    @Id @Column(name = "post_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long post_Id;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -31,7 +33,12 @@ public class Post extends Timestamped{
     private int love = 0;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+    @Exclude
     private List<Comment> commentList = new ArrayList<>();
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
 
     public Post(PostRequestDto postRequestDto, User user){
         this.title = postRequestDto.getTitle();
@@ -41,6 +48,8 @@ public class Post extends Timestamped{
     public void LoveOk() {
         this.love++;
     }
+    
+    //fixme : Love의 값이 음수인 경우에 대한 불변식 필요
     public void LoveCancel() {
         this.love--;
     }

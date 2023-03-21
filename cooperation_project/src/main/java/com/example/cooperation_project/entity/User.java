@@ -1,6 +1,5 @@
 package com.example.cooperation_project.entity;
 
-import com.example.cooperation_project.dto.SignupRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

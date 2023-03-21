@@ -1,4 +1,4 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.auth;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

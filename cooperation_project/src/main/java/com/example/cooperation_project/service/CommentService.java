@@ -1,7 +1,7 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.CommentRequestDto;
-import com.example.cooperation_project.dto.CommentResponseDto;
+import com.example.cooperation_project.dto.comment.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.entity.*;
 import com.example.cooperation_project.exception.*;
 import com.example.cooperation_project.repository.CommentRepository;
@@ -28,12 +28,12 @@ public class CommentService {
 
 
     @Transactional
-    public CommentResponseDto createdComment(Long post_Id, CommentRequestDto commentRequestDto, User user){
+    public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto, User user){
 
 //        user = userRepository.findByUserId(user.getUserId()).orElseThrow(
 //                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
 //        );
-        Post post = postRepository.findById(post_Id).orElseThrow(
+        Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
@@ -42,15 +42,15 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseDto update(Long post_Id, Long comment_Id, CommentRequestDto requestDto, User user) {
-        Post post = postRepository.findById(post_Id).orElseThrow(
+    public CommentResponseDto update(Long postId, Long commentId, CommentRequestDto requestDto, User user) {
+        Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
         );
-        Comment comment = commentRepository.findById(comment_Id).orElseThrow(
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
@@ -59,16 +59,16 @@ public class CommentService {
     }
 
     @Transactional
-    public NotFoundCommentException deleteComment(Long post_Id, Long comment_Id, User user) {
-        Post post = postRepository.findById(post_Id).orElseThrow(
+    public NotFoundCommentException deleteComment(Long postId, Long commentId, User user) {
+        Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
         );
-        Comment comment = commentRepository.findById(comment_Id).orElseThrow(
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
-            commentRepository.deleteById(comment_Id);
+        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+            commentRepository.deleteById(commentId);
             return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
             throw new NotFoundCommentException("작성자만 삭제/수정할 수 있습니다.");
