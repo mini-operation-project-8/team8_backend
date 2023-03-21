@@ -45,7 +45,7 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
-        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(postId) && isMatchComment(comment, user)) || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
@@ -62,7 +62,7 @@ public class CommentService {
                 () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(postId) && isMatchComment(comment, user)) || user.getRole() == UserRoleEnum.ADMIN) {
             commentRepository.deleteById(commentId);
             return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
@@ -112,5 +112,9 @@ public class CommentService {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
         return null;
+    }
+
+    private boolean isMatchComment(Comment comment, User user){
+        return comment.getUser().getUserId().equals(user.getUserId());
     }
 }

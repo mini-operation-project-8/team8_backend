@@ -2,6 +2,7 @@ package com.example.cooperation_project.service;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.auth.SignupRequestDto;
+import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
 import com.example.cooperation_project.jwt.JwtUtil;
@@ -65,4 +66,5 @@ public class UserService {
         MsgCodeResponseDto result = new MsgCodeResponseDto("로그인 성공");
         return result;
     }
+
 }
