@@ -66,9 +66,6 @@ public class WebSecurityConfig {
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
-
-         http.formLogin().loginPage("/api/user/login").permitAll();
-
         http.exceptionHandling().accessDeniedPage("/api/user/forbidden");
 
         return http.build();

@@ -7,10 +7,9 @@
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/ApiUseTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/ApiUseTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/CommentRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/CommentRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/jwt/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/jwt/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679374433606</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합">
+      <created>1679377433996</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1679377433996</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +387,8 @@
     <MESSAGE value="Post 페이징 구현" />
     <MESSAGE value="Comment fixme" />
     <MESSAGE value="post join column 에 의한 bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="post join column 에 의한 bug fix" />
+    <MESSAGE value="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합" />
+    <option name="LAST_COMMIT_MESSAGE" value="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

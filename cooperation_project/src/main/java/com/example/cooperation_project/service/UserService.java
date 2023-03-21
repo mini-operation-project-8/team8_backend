@@ -5,6 +5,7 @@ import com.example.cooperation_project.dto.auth.SignupRequestDto;
 import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
+import com.example.cooperation_project.exception.DuplicateUserException;
 import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,15 +28,18 @@ public class UserService {
 
     @Transactional
     public MsgCodeResponseDto signup(SignupRequestDto signupRequestDto){
+
         String userId = signupRequestDto.getUserId();
         String password = passwordEncoder.encode(signupRequestDto.getPassword());
 
         Optional<User> found = userRepository.findByUserId(userId);
+
         if(found.isPresent()){
-            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
+            throw new DuplicateUserException("중복된 사용자가 존재합니다.");
         }
 
         UserRoleEnum role = UserRoleEnum.USER;
+
         if(signupRequestDto.isAdmin()){
             if(!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)){
                 throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능 합니다.");
@@ -44,7 +48,9 @@ public class UserService {
         }
 
         User user = new User(userId, password, role);
+
         userRepository.save(user);
+
         MsgCodeResponseDto result = new MsgCodeResponseDto("회원가입 성공");
         return result;
     }
