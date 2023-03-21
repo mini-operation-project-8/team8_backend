@@ -26,31 +26,40 @@ public class CommentService {
     private final PostRepository postRepository;
     private final LoveCommentRepository loveCommentRepository;
 
-
+    //fixme : 각 메소드 별로 메소드 시그니처에 예외 명시.
     @Transactional
-    public CommentResponseDto createdComment(Long post_Id, CommentRequestDto commentRequestDto, User user){
+    public CommentResponseDto createdComment(Long post_Id, CommentRequestDto commentRequestDto,
+        User user) {
 
 //        user = userRepository.findByUserId(user.getUserId()).orElseThrow(
 //                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
 //        );
         Post post = postRepository.findById(post_Id).orElseThrow(
-                () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
+            () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
-        Comment comment = commentRepository.saveAndFlush(new Comment(commentRequestDto, post, user));
+        //fixme : save 대신 saveAndFlush를 반드시 사용?
+        Comment comment = commentRepository.saveAndFlush(
+            new Comment(commentRequestDto, post, user));
+
         return new CommentResponseDto(comment);
     }
 
     @Transactional
-    public CommentResponseDto update(Long post_Id, Long comment_Id, CommentRequestDto requestDto, User user) {
+    public CommentResponseDto update(Long post_Id, Long comment_Id, CommentRequestDto requestDto,
+        User user) {
         Post post = postRepository.findById(post_Id).orElseThrow(
-                () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
+            () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
         );
         Comment comment = commentRepository.findById(comment_Id).orElseThrow(
-                () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
+            () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
+
+        //fixme : if절에 들어간 장황한 equals문들 하나의 공통된 메시지로 바꾸기.
+
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId()))
+            || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
@@ -61,13 +70,14 @@ public class CommentService {
     @Transactional
     public NotFoundCommentException deleteComment(Long post_Id, Long comment_Id, User user) {
         Post post = postRepository.findById(post_Id).orElseThrow(
-                () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
+            () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
         );
         Comment comment = commentRepository.findById(comment_Id).orElseThrow(
-                () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
+            () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId()))
+            || user.getRole() == UserRoleEnum.ADMIN) {
             commentRepository.deleteById(comment_Id);
             return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
@@ -79,7 +89,7 @@ public class CommentService {
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
         Comment comment = commentRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+            () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
 
         List<LoveComment> commentLoveList = user.getLoveCommentList();
@@ -87,7 +97,8 @@ public class CommentService {
         if (user != null) {
 
             for (LoveComment loveComment : commentLoveList) {
-                if (loveComment.getUser().getUserId() == comment.getUser().getUserId() && loveComment.getUser().getUserId() == user.getUserId()) {
+                if (loveComment.getUser().getUserId() == comment.getUser().getUserId()
+                    && loveComment.getUser().getUserId() == user.getUserId()) {
                     if (loveComment.isLove() == false) {
                         loveComment.update();
                         comment.LoveOk();
@@ -105,7 +116,7 @@ public class CommentService {
                     return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
                 }
             }
-            if(commentLoveList.size() == 0){
+            if (commentLoveList.size() == 0) {
                 LoveComment commentLove = new LoveComment(comment, user);
                 loveCommentRepository.save(commentLove);
                 commentLove.update();
