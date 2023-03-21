@@ -1,6 +1,7 @@
 package com.example.cooperation_project.aop;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
+import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.exception.NotFoundPostException;
 import com.example.cooperation_project.exception.NotFoundUserException;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +27,11 @@ public class ChitChatControllerAdvice {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new MsgCodeResponseDto(e.getMessage()));
     }
+
+    @ExceptionHandler({NotAuthException.class})
+    public ResponseEntity<MsgCodeResponseDto> handlerNotAuthException(NotAuthException e){
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new MsgCodeResponseDto(e.getMessage()));
+    }
+
 }

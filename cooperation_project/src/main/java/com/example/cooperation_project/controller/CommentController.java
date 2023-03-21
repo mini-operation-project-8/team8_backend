@@ -8,6 +8,7 @@ import com.example.cooperation_project.exception.NotFoundUserException;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,6 +31,7 @@ public class CommentController {
     public ResponseEntity<Object> createdComment(@PathVariable Long post_Id,
                                                  @RequestBody CommentRequestDto commentRequestDto,
                                                  @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return ResponseEntity.ok(commentService.createdComment(post_Id,commentRequestDto, userDetails.getUser()));
     }
 

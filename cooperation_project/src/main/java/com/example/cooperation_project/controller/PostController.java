@@ -22,7 +22,9 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/chitchat/posts")
-    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
@@ -42,24 +44,30 @@ public class PostController {
 
     // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{post_Id}")
-    public PostCommentResponseDto getPostsId(@PathVariable Long post_Id){
+    public PostCommentResponseDto getPostsId(@PathVariable Long post_Id) {
         return postService.getPostsId(post_Id);
     }
 
     // 게시글 수정
     @PatchMapping("/chitchat/posts/{post_Id}")
-    public PostResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostResponseDto update(@PathVariable Long post_Id,
+        @RequestBody PostRequestDto postRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return postService.update(post_Id, postRequestDto, userDetails.getUser());
     }
 
     // 게시글 삭제
     @DeleteMapping("/chitchat/posts/{post_Id}")
-    public MsgCodeResponseDto delete(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public MsgCodeResponseDto delete(@PathVariable Long post_Id,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return postService.delete(post_Id, userDetails.getUser());
     }
 
     @PutMapping("/chitchat/posts/{post_Id}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long post_Id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long post_Id,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return postService.loveOk(post_Id, userDetails.getUser());
     }
 }
