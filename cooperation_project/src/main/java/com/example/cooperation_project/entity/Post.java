@@ -14,7 +14,7 @@ import lombok.ToString.Exclude;
 @NoArgsConstructor
 public class Post extends Timestamped{
 
-    @Id @Column(name = "postId")
+    @Id @Column(name = "post_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
