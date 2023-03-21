@@ -22,7 +22,6 @@ public class PostController {
 
     private final PostService postService;
 
-    // 게시글 작성
     @PostMapping("/chitchat/posts")
     public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -30,39 +29,34 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-
     @GetMapping("/chitchat/posts")
     public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
 
        return postService.getProductsOrderByModified(dto);
     }
-
-    // 선택한 게시글 조회
-    @GetMapping("/chitchat/posts/{post_Id}")
-    public PostCommentResponseDto getPostsId(@PathVariable Long post_Id) {
-        return postService.getPostsId(post_Id);
+    @GetMapping("/chitchat/posts/{postId}")
+    public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
+        return postService.getPostsId(postId);
     }
 
-    // 게시글 수정
-    @PatchMapping("/chitchat/posts/{post_Id}")
-    public PostResponseDto update(@PathVariable Long post_Id,
+    @PatchMapping("/chitchat/posts/{postId}")
+    public PostResponseDto update(@PathVariable Long postId,
         @RequestBody PostRequestDto postRequestDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.update(post_Id, postRequestDto, userDetails.getUser());
+        return postService.update(postId, postRequestDto, userDetails.getUser());
     }
 
-    // 게시글 삭제
-    @DeleteMapping("/chitchat/posts/{post_Id}")
-    public MsgCodeResponseDto delete(@PathVariable Long post_Id,
+    @DeleteMapping("/chitchat/posts/{postId}")
+    public MsgCodeResponseDto delete(@PathVariable Long postId,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.delete(post_Id, userDetails.getUser());
+        return postService.delete(postId, userDetails.getUser());
     }
 
-    @PutMapping("/chitchat/posts/{post_Id}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long post_Id,
+    @PutMapping("/chitchat/posts/{postId}/loves")
+    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long postId,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return postService.loveOk(post_Id, userDetails.getUser());
+        return postService.loveOk(postId, userDetails.getUser());
     }
 }
