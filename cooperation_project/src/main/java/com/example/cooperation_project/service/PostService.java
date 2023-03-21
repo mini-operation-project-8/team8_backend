@@ -5,15 +5,11 @@ import com.example.cooperation_project.dto.post.PostCommentResponseDto;
 import com.example.cooperation_project.dto.post.PostRequestDto;
 import com.example.cooperation_project.dto.post.PostResponseDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
-import com.example.cooperation_project.entity.LovePost;
-import com.example.cooperation_project.entity.Post;
-import com.example.cooperation_project.entity.User;
-import com.example.cooperation_project.entity.UserRoleEnum;
+import com.example.cooperation_project.entity.*;
 import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.exception.NotFoundPostException;
-import com.example.cooperation_project.repository.LovePostRepository;
-import com.example.cooperation_project.repository.PostRepository;
-import com.example.cooperation_project.repository.UserRepository;
+import com.example.cooperation_project.repository.*;
+
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +27,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
     private final LovePostRepository lovePostRepository;
+    private final LoveCommentRepository loveCommentRepository;
+    private final UserRepository userRepository;
+
+
+
+
 
     @Transactional
     public PostResponseDto createPost(PostRequestDto requestDto, User user) {
@@ -88,7 +91,24 @@ public class PostService {
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
+
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
+            List<Comment> commentList = post.getCommentList();
+            for(Comment comment: commentList){
+                List<LoveComment> loveComments = user.getLoveCommentList();
+                for(LoveComment loveComment: loveComments){
+                    if(user.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
+                        loveCommentRepository.delete(loveComment);
+                    }
+                }
+                commentRepository.delete(comment);
+            }
+            List<LovePost> lovePosts = user.getLovePostList();
+            for(LovePost lovePost: lovePosts){
+                if(user.getId() == lovePost.getUser().getId() && lovePost.getPost().getId() == post.getId()){
+                    lovePostRepository.delete(lovePost);
+                }
+            }
             postRepository.deleteById(postId);
             return responseDto;
         } else {
@@ -118,7 +138,11 @@ public class PostService {
             () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
 
-        List<LovePost> boardLoveList = user.getLovePostList();
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
+
+        List<LovePost> boardLoveList = user1.getLovePostList();
 
         if (user != null) {
 
