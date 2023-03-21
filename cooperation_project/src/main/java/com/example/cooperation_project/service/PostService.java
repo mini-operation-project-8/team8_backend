@@ -82,7 +82,7 @@ public class PostService {
 
     @Transactional
     public MsgCodeResponseDto delete(Long postId, User user) {
-        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("");
+        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("게시물을 삭제했습니다.");
 
         Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
