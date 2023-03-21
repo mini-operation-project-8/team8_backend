@@ -25,7 +25,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final LoveCommentRepository loveCommentRepository;
-
+    private final UserRepository userRepository;
 
     @Transactional
     public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto,
@@ -89,7 +89,11 @@ public class CommentService {
             () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
 
-        List<LoveComment> commentLoveList = user.getLoveCommentList();
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
+
+        List<LoveComment> commentLoveList = user1.getLoveCommentList();
 
         if (user != null) {
 
