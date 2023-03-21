@@ -18,8 +18,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    //코멘트 작성
-    @PostMapping("/{post_Id}/comments")
+    @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,
                                                  @RequestBody CommentRequestDto commentRequestDto,
                                                  @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -27,18 +26,18 @@ public class CommentController {
         return ResponseEntity.ok(commentService.createdComment(postId,commentRequestDto, userDetails.getUser()));
     }
 
-    @PatchMapping("/{post_Id}/comments/{comment_Id}")
+    @PatchMapping("/{postId}/comments/{commentId}")
     public ResponseEntity<Object> updateComment(@PathVariable Long postId, @PathVariable Long commentId,
                                                 @RequestBody CommentRequestDto requestDto,
                                                 @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(commentService.update(postId, commentId, requestDto, userDetails.getUser()));
     }
 
-    @DeleteMapping("/{post_Id}/comments/{comment_Id}")
+    @DeleteMapping("/{postId}/comments/{commentId}")
     public ResponseEntity deleteComment(@PathVariable Long postId, @PathVariable Long commentId,
                                                 @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteComment(postId, commentId, userDetails.getUser()));
-    }                               // NO CONTENT를 하면 빈칸이 나온다.
+    }
 
     @PutMapping("/comments/{id}/loves")
     public ResponseEntity<Map<String, HttpStatus>> BoardLoveOk(@PathVariable Long id,

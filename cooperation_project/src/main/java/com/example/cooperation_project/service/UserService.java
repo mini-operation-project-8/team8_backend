@@ -2,6 +2,7 @@ package com.example.cooperation_project.service;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.auth.SignupRequestDto;
+import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
 import com.example.cooperation_project.jwt.JwtUtil;
@@ -29,13 +30,11 @@ public class UserService {
         String userId = signupRequestDto.getUserId();
         String password = passwordEncoder.encode(signupRequestDto.getPassword());
 
-        // 회원 중복 확인
         Optional<User> found = userRepository.findByUserId(userId);
         if(found.isPresent()){
             throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
 
-        // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
         if(signupRequestDto.isAdmin()){
             if(!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)){
@@ -54,13 +53,11 @@ public class UserService {
     public MsgCodeResponseDto login(SignupRequestDto signupRequestDto , HttpServletResponse httpServletResponse){
         String userId = signupRequestDto.getUserId();
 
-        // 사용자 확인
         User user = userRepository.findByUserId(userId).orElseThrow(
                 () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
         );
         String encodePassword = user.getPassword();
         boolean isPasswordMatch = passwordEncoder.matches(signupRequestDto.getPassword(), encodePassword);
-        // 비밀번호 확인
         if(!isPasswordMatch){
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
         }
@@ -69,4 +66,5 @@ public class UserService {
         MsgCodeResponseDto result = new MsgCodeResponseDto("로그인 성공");
         return result;
     }
+
 }

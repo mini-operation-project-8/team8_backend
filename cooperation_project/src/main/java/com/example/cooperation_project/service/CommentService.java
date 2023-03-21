@@ -22,7 +22,6 @@ import java.util.Map;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final LoveCommentRepository loveCommentRepository;
 
@@ -30,9 +29,6 @@ public class CommentService {
     @Transactional
     public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto, User user){
 
-//        user = userRepository.findByUserId(user.getUserId()).orElseThrow(
-//                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
-//        );
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
@@ -49,8 +45,7 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
-        // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(postId) && isMatchComment(comment, user)) || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
@@ -67,7 +62,7 @@ public class CommentService {
                 () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if ((post.getId().equals(postId) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getId().equals(postId) && isMatchComment(comment, user)) || user.getRole() == UserRoleEnum.ADMIN) {
             commentRepository.deleteById(commentId);
             return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
@@ -117,5 +112,9 @@ public class CommentService {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
         return null;
+    }
+
+    private boolean isMatchComment(Comment comment, User user){
+        return comment.getUser().getUserId().equals(user.getUserId());
     }
 }
