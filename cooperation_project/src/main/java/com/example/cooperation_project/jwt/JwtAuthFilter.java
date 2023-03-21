@@ -59,6 +59,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return request.getRequestURI().startsWith("/chitchat/auth")
-            || request.getRequestURI().equals("/chitchat/posts");
+            || request.getRequestURI().equals("/chitchat/postAll");
     }
 }

@@ -1,4 +1,4 @@
-package com.example.cooperation_project.dto.post.config;
+package com.example.cooperation_project.config;
 
 import com.example.cooperation_project.jwt.JwtAuthFilter;
 import com.example.cooperation_project.jwt.JwtUtil;
