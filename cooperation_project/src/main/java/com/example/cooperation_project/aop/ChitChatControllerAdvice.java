@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RequiredArgsConstructor
 public class ChitChatControllerAdvice {
 
-    @ExceptionHandler({NotFoundUserException.class}) // 로그인 실패 ...
+    @ExceptionHandler({NotFoundUserException.class})
     public ResponseEntity<MsgCodeResponseDto> handlerNotFoundUser(NotFoundUserException e){
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

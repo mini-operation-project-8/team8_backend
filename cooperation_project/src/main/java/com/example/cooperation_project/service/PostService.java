@@ -17,7 +17,6 @@ import com.example.cooperation_project.repository.UserRepository;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -32,7 +31,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
     private final LovePostRepository lovePostRepository;
 
     @Transactional
@@ -157,21 +155,6 @@ public class PostService {
         }
         return null;
     }
-
-    /*@Transactional(readOnly = true)
-    public List<PostResponseDto> getPosts(int page, int size, String sortBy, boolean isAsc){
-
-        Sort.Direction direction = isAsc ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
-        List<PostResponseDto> postResponseDtos = new ArrayList<>();
-        Page<Post> posts = postRepository.findAll(pageable);
-
-        for(Post post : posts){
-            postResponseDtos.add(new PostResponseDto(post));
-        }
-        return postResponseDtos;
-    }*/
 
     private boolean isMatchUser(Post post, User user) {
 

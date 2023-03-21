@@ -22,7 +22,6 @@ public class PostController {
 
     private final PostService postService;
 
-    // 게시글 작성
     @PostMapping("/chitchat/posts")
     public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -30,20 +29,16 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-
     @GetMapping("/chitchat/posts")
     public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
 
        return postService.getProductsOrderByModified(dto);
     }
-
-    // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{postId}")
     public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
         return postService.getPostsId(postId);
     }
 
-    // 게시글 수정
     @PatchMapping("/chitchat/posts/{postId}")
     public PostResponseDto update(@PathVariable Long postId,
         @RequestBody PostRequestDto postRequestDto,
@@ -52,7 +47,6 @@ public class PostController {
         return postService.update(postId, postRequestDto, userDetails.getUser());
     }
 
-    // 게시글 삭제
     @DeleteMapping("/chitchat/posts/{postId}")
     public MsgCodeResponseDto delete(@PathVariable Long postId,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {

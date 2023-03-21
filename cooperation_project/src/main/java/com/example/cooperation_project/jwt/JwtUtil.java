@@ -43,7 +43,6 @@ public class JwtUtil {
         key = Keys.hmacShaKeyFor(bytes);
     }
 
-    // header 토큰을 가져오기
     public String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
@@ -52,7 +51,6 @@ public class JwtUtil {
         return null;
     }
 
-    // 토큰 생성
     public String createToken(String userId, UserRoleEnum role) {
         Date date = new Date();
 
@@ -66,7 +64,6 @@ public class JwtUtil {
                         .compact();
     }
 
-    // 토큰 검증
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -83,13 +80,11 @@ public class JwtUtil {
         return false;
     }
 
-    // 토큰에서 사용자 정보 가져오기
     public Claims getUserInfoFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
     }
 
-    // 인증 객체 생성
-    public Authentication createAuthentication(String userId) { // 책임분리를 위해서 인증객체를 만드는 부분을 JWTUtil 쪽으로 보냄.
+    public Authentication createAuthentication(String userId) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }

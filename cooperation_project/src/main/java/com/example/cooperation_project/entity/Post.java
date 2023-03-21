@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.ToString;
 import lombok.ToString.Exclude;
 
 @Getter
@@ -48,8 +47,7 @@ public class Post extends Timestamped{
     public void LoveOk() {
         this.love++;
     }
-    
-    //fixme : Love의 값이 음수인 경우에 대한 불변식 필요
+
     public void LoveCancel() {
         this.love--;
     }

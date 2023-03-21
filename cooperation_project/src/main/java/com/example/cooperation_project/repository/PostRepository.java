@@ -12,8 +12,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findAllByOrderByModifiedAtDesc();
 
-//    Page<Post> findAllByOrderByModifiedAtDesc(Pageable pageable);
-
     Page<Post> findAll(Pageable pageable);
 
     Page<Post> findAllByOrderByModifiedAtDesc(Pageable pageable);
