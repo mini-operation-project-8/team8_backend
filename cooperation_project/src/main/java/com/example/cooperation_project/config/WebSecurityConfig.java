@@ -60,7 +60,8 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/chitchat/**").permitAll()
+                .antMatchers("/chitchat/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/chitchat/posts").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);

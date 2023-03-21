@@ -20,28 +20,35 @@ public class CommentController {
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,
-                                                 @RequestBody CommentRequestDto commentRequestDto,
-                                                 @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        @RequestBody CommentRequestDto commentRequestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return ResponseEntity.ok(commentService.createdComment(postId,commentRequestDto, userDetails.getUser()));
+        return ResponseEntity.ok(
+            commentService.createdComment(postId, commentRequestDto, userDetails.getUser()));
     }
 
     @PatchMapping("/{postId}/comments/{commentId}")
-    public ResponseEntity<Object> updateComment(@PathVariable Long postId, @PathVariable Long commentId,
-                                                @RequestBody CommentRequestDto requestDto,
-                                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok(commentService.update(postId, commentId, requestDto, userDetails.getUser()));
+    public ResponseEntity<Object> updateComment(@PathVariable Long postId,
+        @PathVariable Long commentId,
+        @RequestBody CommentRequestDto requestDto,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return ResponseEntity.ok(
+            commentService.update(postId, commentId, requestDto, userDetails.getUser()));
     }
 
     @DeleteMapping("/{postId}/comments/{commentId}")
     public ResponseEntity deleteComment(@PathVariable Long postId, @PathVariable Long commentId,
-                                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.status(HttpStatus.OK).body(commentService.deleteComment(postId, commentId, userDetails.getUser()));
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(commentService.deleteComment(postId, commentId, userDetails.getUser()));
     }
 
     @PutMapping("/comments/{id}/loves")
     public ResponseEntity<Map<String, HttpStatus>> BoardLoveOk(@PathVariable Long id,
-                                                               @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         return commentService.loveOk(id, userDetails.getUser());
     }
 
