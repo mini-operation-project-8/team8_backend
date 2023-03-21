@@ -1,4 +1,4 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.post;
 
 import com.example.cooperation_project.entity.Post;
 import com.example.cooperation_project.entity.User;
@@ -6,11 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import lombok.ToString;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor @ToString
 public class PostResponseDto {
-    private Long post_Id;
+    private Long postId;
     private String title;
     private String content;
     private Long userId;
@@ -18,7 +19,7 @@ public class PostResponseDto {
     private LocalDateTime modifiedAt;
 
     public PostResponseDto(Post post){
-        this.post_Id = post.getPost_Id();
+        this.postId = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.userId = post.getUser().getId();

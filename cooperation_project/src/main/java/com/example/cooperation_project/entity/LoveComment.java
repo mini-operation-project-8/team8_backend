@@ -19,7 +19,7 @@ public class LoveComment extends Timestamped{
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "COMMENT_ID",nullable = false)
+    @JoinColumn(name = "COMMENTID",nullable = false)
     private Comment comment;
     @Column
     private boolean isLove = false;

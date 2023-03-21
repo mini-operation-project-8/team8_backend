@@ -1,6 +1,6 @@
 package com.example.cooperation_project.entity;
 
-import com.example.cooperation_project.dto.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ public class Comment extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long comment_Id;
+    private Long commentId;
 
     @Column(nullable = false)
     private String contents;

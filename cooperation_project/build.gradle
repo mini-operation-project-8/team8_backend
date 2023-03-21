@@ -53,7 +53,13 @@ jar {
     enabled = false
 }
 
+<<<<<<< HEAD
 >>>>>>> master
 //tasks.named('test') {
 //    useJUnitPlatform()
 //}
+=======
+tasks.named('test') {
+    useJUnitPlatform()
+}
+>>>>>>> master

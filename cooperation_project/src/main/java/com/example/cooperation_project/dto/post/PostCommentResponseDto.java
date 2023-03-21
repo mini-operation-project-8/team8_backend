@@ -1,8 +1,8 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.post;
 
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.entity.Comment;
 import com.example.cooperation_project.entity.Post;
-import com.example.cooperation_project.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class PostCommentResponseDto {
-    private Long post_Id;
+    private Long postId;
     private String title;
     private String content;
     private Long userId;
@@ -22,7 +22,7 @@ public class PostCommentResponseDto {
     private List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
 
     public PostCommentResponseDto(Post post){
-        this.post_Id = post.getPost_Id();
+        this.postId = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.userId = post.getUser().getId();

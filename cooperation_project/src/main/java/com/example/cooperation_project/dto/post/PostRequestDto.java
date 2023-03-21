@@ -1,15 +1,15 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentRequestDto {
+public class PostRequestDto {
 
-    private String contents;
+    private String title;
 
+    private String content;
 }
