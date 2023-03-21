@@ -1,12 +1,12 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.post;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @RequiredArgsConstructor
-@ToString
 public class ReqPostPageableDto {
 
     private final String sortBy;

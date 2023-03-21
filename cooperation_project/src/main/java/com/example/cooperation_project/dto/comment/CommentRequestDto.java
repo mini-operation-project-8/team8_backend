@@ -1,4 +1,4 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,8 @@
-package com.example.cooperation_project.dto;
+package com.example.cooperation_project.dto.post;
 
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.entity.Comment;
 import com.example.cooperation_project.entity.Post;
-import com.example.cooperation_project.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +22,7 @@ public class PostCommentResponseDto {
     private List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
 
     public PostCommentResponseDto(Post post){
-        this.post_Id = post.getPost_Id();
+        this.post_Id = post.getId();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.userId = post.getUser().getId();

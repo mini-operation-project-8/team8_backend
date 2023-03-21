@@ -1,6 +1,6 @@
 package com.example.cooperation_project.entity;
 
-import com.example.cooperation_project.dto.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

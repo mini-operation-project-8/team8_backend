@@ -1,13 +1,9 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.LoginRequestDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.SignupRequestDto;
-import com.example.cooperation_project.security.UserDetailsImpl;
+import com.example.cooperation_project.dto.auth.SignupRequestDto;
 import com.example.cooperation_project.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;

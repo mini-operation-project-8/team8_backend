@@ -1,7 +1,7 @@
 package com.example.cooperation_project.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.example.cooperation_project.dto.SecurityExceptionDto;
+import com.example.cooperation_project.dto.auth.SecurityExceptionDto;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -60,6 +60,7 @@ public class JwtAuthFilter extends OncePerRequestFilter { // Filter를 상속 �
     }
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getRequestURI().startsWith("/chitchat/auth");
+        return request.getRequestURI().startsWith("/chitchat/auth")
+            || request.getRequestURI().equals("/chitchat/posts");
     }
 }

@@ -1,14 +1,12 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.LoginRequestDto;
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.SignupRequestDto;
+import com.example.cooperation_project.dto.auth.SignupRequestDto;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
 import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

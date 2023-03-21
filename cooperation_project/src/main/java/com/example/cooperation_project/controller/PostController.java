@@ -1,11 +1,13 @@
 package com.example.cooperation_project.controller;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.PostCommentResponseDto;
-import com.example.cooperation_project.dto.PostRequestDto;
-import com.example.cooperation_project.dto.PostResponseDto;
+import com.example.cooperation_project.dto.post.PostCommentResponseDto;
+import com.example.cooperation_project.dto.post.PostRequestDto;
+import com.example.cooperation_project.dto.post.PostResponseDto;
+import com.example.cooperation_project.dto.post.ReqPostPageableDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.PostService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,19 +30,12 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-    // 게시글 목록 조회
-    /*@GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts( @RequestParam("page") int page,
-                                           @RequestParam("size") int size,
-                                           @RequestParam("sortBy") String sortBy,
-                                           @RequestParam("isAsc") boolean isAsc)
-    {
-        return postService.getPosts(page-1, size, sortBy, isAsc);
-    }
+
     @GetMapping("/chitchat/posts")
-    public List<PostResponseDto> getPosts(){
-        return postService.getPosts();
-    }*/
+    public List<PostResponseDto> getPosts(@RequestBody ReqPostPageableDto dto){
+
+       return postService.getProductsOrderByModified(dto);
+    }
 
     // 선택한 게시글 조회
     @GetMapping("/chitchat/posts/{post_Id}")

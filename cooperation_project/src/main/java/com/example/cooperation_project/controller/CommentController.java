@@ -1,23 +1,15 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.CommentRequestDto;
-import com.example.cooperation_project.dto.CommentResponseDto;
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.exception.NotFoundPostException;
-import com.example.cooperation_project.exception.NotFoundUserException;
+import com.example.cooperation_project.dto.comment.CommentRequestDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
