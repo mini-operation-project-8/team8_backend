@@ -36,6 +36,7 @@ public class PostController {
     }
     @GetMapping("/chitchat/posts/{postId}")
     public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
+
         return postService.getPostsId(postId);
     }
 

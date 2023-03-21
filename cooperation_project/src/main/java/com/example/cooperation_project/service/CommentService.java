@@ -29,7 +29,7 @@ public class CommentService {
 
     @Transactional
     public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto, User user){
-
+        
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );

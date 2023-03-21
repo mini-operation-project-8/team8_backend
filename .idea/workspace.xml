@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -368,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679381915056</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="PostController getPosts 요청 reqParam으로 변경">
+      <created>1679383631860</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1679383631860</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +404,8 @@
     <MESSAGE value="post join column 에 의한 bug fix" />
     <MESSAGE value="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합" />
     <MESSAGE value="jwtAuthFilter shouldNotFilter 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="jwtAuthFilter shouldNotFilter 추가" />
+    <MESSAGE value="PostController getPosts 요청 reqParam으로 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="PostController getPosts 요청 reqParam으로 변경" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
