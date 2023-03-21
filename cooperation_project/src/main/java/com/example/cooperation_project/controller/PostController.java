@@ -48,7 +48,7 @@ public class PostController {
 
     // 게시글 수정
     @PatchMapping("/chitchat/posts/{post_Id}")
-    public PostResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PostCommentResponseDto update(@PathVariable Long post_Id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return postService.update(post_Id, postRequestDto, userDetails.getUser());
     }
 

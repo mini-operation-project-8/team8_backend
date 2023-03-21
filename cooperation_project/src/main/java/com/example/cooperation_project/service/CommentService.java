@@ -2,13 +2,8 @@ package com.example.cooperation_project.service;
 
 import com.example.cooperation_project.dto.CommentRequestDto;
 import com.example.cooperation_project.dto.CommentResponseDto;
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.entity.*;
-import com.example.cooperation_project.exception.ApiException;
-import com.example.cooperation_project.exception.ExceptionEnum;
-import com.example.cooperation_project.exception.NotFoundPostException;
-import com.example.cooperation_project.exception.NotFoundUserException;
-import com.example.cooperation_project.jwt.JwtUtil;
+import com.example.cooperation_project.exception.*;
 import com.example.cooperation_project.repository.CommentRepository;
 import com.example.cooperation_project.repository.LoveCommentRepository;
 import com.example.cooperation_project.repository.PostRepository;
@@ -35,44 +30,48 @@ public class CommentService {
     @Transactional
     public CommentResponseDto createdComment(Long post_Id, CommentRequestDto commentRequestDto, User user){
 
-        user = userRepository.findByUserId(user.getUserId()).orElseThrow(
-                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
-        );
+//        user = userRepository.findByUserId(user.getUserId()).orElseThrow(
+//                () -> new NotFoundUserException("사용자가 존재하지않습니다.")
+//        );
         Post post = postRepository.findById(post_Id).orElseThrow(
                 () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
+
         Comment comment = commentRepository.saveAndFlush(new Comment(commentRequestDto, post, user));
         return new CommentResponseDto(comment);
     }
 
     @Transactional
-    public CommentResponseDto update(Long post_Id, CommentRequestDto requestDto, User user) {
-
-        Comment comment = commentRepository.findById(post_Id).orElseThrow(
-                () ->  new IllegalArgumentException("댓글이 존재하지 않습니다.")
+    public CommentResponseDto update(Long post_Id, Long comment_Id, CommentRequestDto requestDto, User user) {
+        Post post = postRepository.findById(post_Id).orElseThrow(
+                () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
+        );
+        Comment comment = commentRepository.findById(comment_Id).orElseThrow(
+                () -> new NotFoundCommentException("댓글을 찾을 수 없습니다.")
         );
         // 요청받은 DTO 로 DB에 저장할 객체 만들기
-        if (comment.getUser().getUserId() == user.getUserId() || user.getRole() == UserRoleEnum.ADMIN) {
+        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
             comment.update(requestDto);
             return new CommentResponseDto(comment);
         } else {
-            throw new IllegalArgumentException("작성자만 삭제/수정할 수 있습니다.");
+            throw new NotFoundCommentException("작성자만 삭제/수정할 수 있습니다.");
         }
     }
 
-
     @Transactional
-    public ResponseEntity<Map<String, HttpStatus>> deleteComment(Long post_Id, User user) {
-
-        Comment comment = commentRepository.findById(post_Id).orElseThrow(
-                () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+    public NotFoundCommentException deleteComment(Long post_Id, Long comment_Id, User user) {
+        Post post = postRepository.findById(post_Id).orElseThrow(
+                () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
+        );
+        Comment comment = commentRepository.findById(comment_Id).orElseThrow(
+                () -> new NotFoundCommentException("댓글이 존재하지 않습니다.")
         );
 
-        if (comment.getUser().getUserId() == user.getUserId() || user.getRole() == UserRoleEnum.ADMIN) {
-            commentRepository.deleteById(post_Id);
-            return new ResponseEntity("댓글을 삭제 했습니다.", HttpStatus.OK);
+        if ((post.getPost_Id().equals(post_Id) && comment.getUser().getUserId().equals(user.getUserId())) || user.getRole() == UserRoleEnum.ADMIN) {
+            commentRepository.deleteById(comment_Id);
+            return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
-            throw new IllegalArgumentException("작성자만 삭제/수정할 수 있습니다.");
+            throw new NotFoundCommentException("작성자만 삭제/수정할 수 있습니다.");
         }
     }
 
