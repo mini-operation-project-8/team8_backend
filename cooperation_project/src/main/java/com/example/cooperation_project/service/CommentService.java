@@ -1,6 +1,5 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.comment.CommentRequestDto;
 import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.entity.*;
@@ -29,7 +28,7 @@ public class CommentService {
 
     @Transactional
     public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto, User user){
-        
+
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
@@ -55,7 +54,7 @@ public class CommentService {
     }
 
     @Transactional
-    public MsgCodeResponseDto deleteComment(Long postId, Long commentId, User user) {
+    public NotFoundCommentException deleteComment(Long postId, Long commentId, User user) {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new NotFoundPostException("게시글을 찾을 수 없습니다.")
         );
@@ -65,7 +64,7 @@ public class CommentService {
 
         if ((post.getId().equals(postId) && isMatchComment(comment, user)) || user.getRole() == UserRoleEnum.ADMIN) {
             commentRepository.deleteById(commentId);
-            return new MsgCodeResponseDto("댓글을 삭제했습니다");
+            return new NotFoundCommentException("댓글을 삭제 했습니다.");
         } else {
             throw new NotFoundCommentException("작성자만 삭제/수정할 수 있습니다.");
         }
@@ -97,26 +96,17 @@ public class CommentService {
                         comment.LoveCancel();
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
-                } else {
-                    LoveComment commentLove = new LoveComment(comment, user);
-                    loveCommentRepository.save(commentLove);
-                    commentLove.update();
-                    comment.LoveOk();
-                    return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
                 }
             }
-            if(commentLoveList.size() == 0){
                 LoveComment commentLove = new LoveComment(comment, user);
                 loveCommentRepository.save(commentLove);
                 commentLove.update();
                 comment.LoveOk();
                 return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
-            }
 
         } else {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
-        return null;
     }
 
     private boolean isMatchComment(Comment comment, User user){

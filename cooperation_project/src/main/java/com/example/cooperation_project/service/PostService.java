@@ -34,8 +34,6 @@ public class PostService {
 
 
 
-
-
     @Transactional
     public PostResponseDto createPost(PostRequestDto requestDto, User user) {
 
@@ -85,32 +83,24 @@ public class PostService {
 
     @Transactional
     public MsgCodeResponseDto delete(Long postId, User user) {
-        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("게시물을 삭제했습니다.");
+        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("");
 
         Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
-        User user1 = userRepository.findById(user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
-        );
 
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
             List<Comment> commentList = post.getCommentList();
             for(Comment comment: commentList){
-                List<LoveComment> loveComments = user1.getLoveCommentList();
+                List<LoveComment> loveComments = user.getLoveCommentList();
                 for(LoveComment loveComment: loveComments){
-                    if(user1.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
+                    if(user.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
                         loveCommentRepository.delete(loveComment);
                     }
                 }
+
                 commentRepository.delete(comment);
-            }
-            List<LovePost> lovePosts = user1.getLovePostList();
-            for(LovePost lovePost: lovePosts){
-                if(user1.getId() == lovePost.getUser().getId() && lovePost.getPost().getId() == post.getId()){
-                    lovePostRepository.delete(lovePost);
-                }
             }
             postRepository.deleteById(postId);
             return responseDto;
@@ -140,7 +130,6 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(
             () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
-
         User user1 = userRepository.findById(user.getId()).orElseThrow(
                 () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
@@ -151,7 +140,7 @@ public class PostService {
 
             for (LovePost lovePost : boardLoveList) {
                 if (lovePost.getPost().getId() == post.getId()
-                    && lovePost.getUser().getUserId() == user.getUserId()) {
+                    && lovePost.getUser().getId() == user.getId()) {
                     if (lovePost.isLove() == false) {
                         lovePost.update();
                         post.LoveOk();
@@ -161,26 +150,16 @@ public class PostService {
                         post.LoveCancel();
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
-                } else {
-                    LovePost lovePost1 = new LovePost(post, user);
-                    lovePostRepository.save(lovePost1);
-                    lovePost1.update();
-                    post.LoveOk();
-                    return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
                 }
             }
-            if (boardLoveList.size() == 0) {
                 LovePost lovePost1 = new LovePost(post, user);
                 lovePostRepository.save(lovePost1);
                 lovePost1.update();
                 post.LoveOk();
                 return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
-            }
-
         } else {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
-        return null;
     }
 
     private boolean isMatchUser(Post post, User user) {
