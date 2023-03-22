@@ -86,7 +86,7 @@ public class CommentService {
         if (user != null) {
 
             for (LoveComment loveComment : commentLoveList) {
-                if (loveComment.getUser().getUserId() == comment.getUser().getUserId() && loveComment.getUser().getUserId() == user.getUserId()) {
+                if (loveComment.getUser().getId() == comment.getUser().getId() && loveComment.getComment().getCommentId() == comment.getCommentId()) {
                     if (loveComment.isLove() == false) {
                         loveComment.update();
                         comment.LoveOk();

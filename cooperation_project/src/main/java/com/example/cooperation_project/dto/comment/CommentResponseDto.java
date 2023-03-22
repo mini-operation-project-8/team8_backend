@@ -13,6 +13,7 @@ public class CommentResponseDto {
     private String contents;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private Long numOfLove;
     private String userId;
 
     public CommentResponseDto(Comment comment){
@@ -21,6 +22,7 @@ public class CommentResponseDto {
         this.createdAt = comment.getCreatedAt();
         this.modifiedAt = comment.getModifiedAt();
         this.userId = comment.getUser().getUserId();
+        this.numOfLove = comment.getNumOfLove();
     }
 
 }
