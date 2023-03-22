@@ -21,19 +21,19 @@ public class LoveComment{
     @ManyToOne
     @JoinColumn(name = "COMMENT_ID",nullable = false)
     private Comment comment;
-    /*@Column
-    private boolean isLove = false;*/
+    @Column
+    private boolean isLove = false;
 
     public LoveComment(Comment comment, User user) {
         this.comment = comment;
         this.user = user;
     }
-    /*public void update(){
+    public void update(){
         if(this.isLove == false){
             this.isLove = true;
         }else{
             this.isLove = false;
         }
-    }*/
+    }
 
 }
