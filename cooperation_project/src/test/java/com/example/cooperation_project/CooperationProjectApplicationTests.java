@@ -33,52 +33,35 @@ class CooperationProjectApplicationTests {
     }
 
     @Test
-    void test(){
+    @DisplayName("포스트 페이징 처리")
+    public void pageablePost() {
 
-        System.out.println(postService.getPosts());
-    }
+        //given
+        ReqPostPageableDto dto = new ReqPostPageableDto("id", true, 4, 1);
 
-    @Test @DisplayName("포스트 페이징 처리")
-    public void pageablePost(){
-        /* given */
-        ReqPostPageableDto dto = new ReqPostPageableDto("id",true,4,1);
+        //when
+        List<PostResponseDto> result = postService.getPageOfPost(dto);
 
-        /* when */
-        List<PostResponseDto> result = postService.getProductsOrderByModified(dto);
-
-        /* then */
+        //then
         System.out.println(result);
-        Assertions.assertEquals(dto.getSize(),result.size());
+
+        Assertions.assertEquals(dto.getSize(), result.size());
     }
 
     @Test
-    public void lovePost(){
-/*
-        lovePostRepo.getLove(1L);*/
-    }
+    public void postCountAll() {
+        //given
 
-
-    @Test
-    public void postCountAll(){
-        /* given */
-
-
-        /* when */
+        //when
 
         Optional<LovePost> result
-            = lovePostRepo.findLovePost(1L,"dignzh12");
+            = lovePostRepo.findLovePost(1L, "dignzh12");
 
-        /* then */
+        //then
 
         System.out.println(result.get());
     }
 
-    @Test
-    public void testCount(){
-
-        Long num = lovePostRepo.countNumOfLoveOnPost(1L);
-
-        System.out.println(num);
-    }
-
 }
+
+
