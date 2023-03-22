@@ -6,19 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostCommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostCommentResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LoveComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LoveComment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LovePost.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/LovePost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LoveCommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LoveCommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LovePostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/LovePostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/service/PostServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/service/PostServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,6 +302,8 @@
       <workItem from="1679053728347" duration="51000" />
       <workItem from="1679299923919" duration="24613000" />
       <workItem from="1679357202839" duration="15346000" />
+      <workItem from="1679415487967" duration="2392000" />
+      <workItem from="1679450983940" duration="3010000" />
     </task>
     <task id="LOCAL-00001" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
       <created>1679314426710</created>
@@ -394,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679389841882</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X">
+      <created>1679414048740</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1679414048740</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +425,8 @@
     <MESSAGE value="PostController getPosts 요청 reqParam으로 변경" />
     <MESSAGE value="UserService 리팩토링" />
     <MESSAGE value="CommentService 메소드 시그니처 예외 명시" />
-    <option name="LAST_COMMIT_MESSAGE" value="CommentService 메소드 시그니처 예외 명시" />
+    <MESSAGE value="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X" />
+    <option name="LAST_COMMIT_MESSAGE" value="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
