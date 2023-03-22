@@ -62,6 +62,12 @@ public class PostService {
         return new PostCommentResponseDto(post);
     }
 
+    @Transactional(readOnly = true)
+    public Long getCountAllPosts(){
+
+        return postRepository.countPosts();
+    }
+
     @Transactional
     public PostResponseDto update(Long postId, PostRequestDto postRequestDto, User user)
         throws NotFoundPostException, NotAuthException {
@@ -109,7 +115,7 @@ public class PostService {
         }
     }
 
-    public List<PostResponseDto> getProductsOrderByModified(ReqPostPageableDto dto) {
+    public List<PostResponseDto> getPageOfPost(ReqPostPageableDto dto) {
 
         return postRepository
             .findAllByOrderByModifiedAtDesc(configPageAble(dto))

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
+    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="변동사항 없는 commit">
+      <change afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/LoveServiceTemp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +50,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="0ef5ab25dc937941e613021fcd1fc593fd65c062" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -281,8 +290,8 @@
       <list>
         <item itemvalue="JUnit.CooperationProjectApplicationTests.testCount" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.postCountAll" />
-        <item itemvalue="JUnit.CooperationProjectApplicationTests.LovePost" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.pageablePost" />
+        <item itemvalue="JUnit.CooperationProjectApplicationTests.LovePost" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -299,7 +308,7 @@
       <workItem from="1679299923919" duration="24613000" />
       <workItem from="1679357202839" duration="15346000" />
       <workItem from="1679415487967" duration="2392000" />
-      <workItem from="1679450983940" duration="11501000" />
+      <workItem from="1679450983940" duration="16465000" />
     </task>
     <task id="LOCAL-00001" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
       <created>1679314426710</created>
@@ -413,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679455001959</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="변동사항 없는 commit">
+      <created>1679471932293</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1679471932293</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +440,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -446,7 +474,8 @@
     <MESSAGE value="Comment 한개 조회 추가 요청 기능 구현" />
     <MESSAGE value="pull전 commit" />
     <MESSAGE value="스프링부트 Test 코드 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="스프링부트 Test 코드 수정" />
+    <MESSAGE value="변동사항 없는 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="변동사항 없는 commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

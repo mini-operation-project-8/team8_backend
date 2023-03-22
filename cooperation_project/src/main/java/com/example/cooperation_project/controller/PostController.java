@@ -25,8 +25,6 @@ public class PostController {
 
     private final PostService postService;
 
-    //private final LoveService loveService;
-
     @PostMapping("/posts")
     public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -34,15 +32,15 @@ public class PostController {
         return postService.createPost(postRequestDto, userDetails.getUser());
     }
 
-//    @GetMapping("/posts")
-//    public List<PostResponseDto> getPosts(ReqPostPageableDto dto, HttpServletResponse resp) {
-//
-//        Long count = postService.getCountAllPosts();
-//
-//        resp.addHeader("Total_Count_Posts",String.valueOf(count));
-//
-//        return postService.getPageOfPost(dto);
-//    }
+    @GetMapping("/posts")
+    public List<PostResponseDto> getPosts(ReqPostPageableDto dto, HttpServletResponse resp) {
+
+        Long count = postService.getCountAllPosts();
+
+        resp.addHeader("Total_Count_Posts",String.valueOf(count));
+
+        return postService.getPageOfPost(dto);
+    }
 
     @GetMapping("/posts/{postId}")
     public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
@@ -76,16 +74,5 @@ public class PostController {
         return postService.loveOk(postId, userDetails.getUser());
     }
 
-//    @PutMapping("/posts/{postId}/loves")
-//    public ResponseEntity<Object> postLove(@PathVariable Long postId,
-//        @AuthenticationPrincipal UserDetailsImpl details) {
-//
-//        boolean checkedLove = loveService.loveOnPost(postId,details.getUser());
-//
-//
-//        return checkedLove ?
-//            ResponseEntity.ok(new MsgCodeResponseDto("좋아요 on")) :
-//            ResponseEntity.ok(new MsgCodeResponseDto("좋아요 off"));
-//    }
 
 }

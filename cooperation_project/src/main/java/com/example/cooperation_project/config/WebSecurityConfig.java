@@ -61,7 +61,7 @@ public class WebSecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/chitchat/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/chitchat/posts").permitAll()
+            .antMatchers(HttpMethod.GET,"/chitchat/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
@@ -84,7 +84,7 @@ public class WebSecurityConfig {
         config.addAllowedMethod("*");
 
         config.addAllowedHeader("*");
-        
+
         config.setAllowCredentials(true);
 
         config.validateAllowCredentials();

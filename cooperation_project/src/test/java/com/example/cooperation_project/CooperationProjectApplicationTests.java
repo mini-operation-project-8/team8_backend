@@ -40,7 +40,7 @@ class CooperationProjectApplicationTests {
         ReqPostPageableDto dto = new ReqPostPageableDto("id", true, 4, 1);
 
         //when
-        List<PostResponseDto> result = postService.getPageOfPost(dto);
+        List<PostResponseDto> result = postService.getPageOfPosts(dto);
 
         //then
         System.out.println(result);
