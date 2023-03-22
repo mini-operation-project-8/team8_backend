@@ -46,4 +46,6 @@ public class Comment extends Timestamped{
     public void LoveCancel() {
         this.numOfLove--;
     }
+
+
 }
