@@ -2,6 +2,7 @@ package com.example.cooperation_project.controller;
 
 import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.comment.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import com.example.cooperation_project.service.LoveService;
@@ -21,6 +22,15 @@ public class CommentController {
     private final CommentService commentService;
 
     private final LoveService loveService;
+
+    @GetMapping("/{postId}/comments/{commentId}")
+    public ResponseEntity<Object> getCommentOne(@PathVariable Long commentId){
+
+       CommentResponseDto dto
+           = commentService.getCommentOne(commentId);
+
+       return ResponseEntity.ok(dto);
+    }
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,

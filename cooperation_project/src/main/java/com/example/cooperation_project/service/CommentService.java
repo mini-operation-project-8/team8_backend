@@ -82,6 +82,14 @@ public class CommentService {
         }
     }
 
+    public CommentResponseDto getCommentOne(Long cmtId){
+
+        Comment cmt = commentRepository.findById(cmtId)
+            .orElseThrow(() -> new NotFoundCommentException("댓글이 존재하지 않습니다."));
+
+        return new CommentResponseDto(cmt);
+    }
+
     /*@Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 

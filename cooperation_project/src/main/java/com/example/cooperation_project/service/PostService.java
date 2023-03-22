@@ -128,10 +128,8 @@ public class PostService {
 
         return PageRequest.of(dto.getPage() - 1, dto.getSize(), sort);
     }
-
-
-
-    /*@Transactional
+/*
+    @Transactional
     public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
 
         Post post = postRepository.findById(id).orElseThrow(

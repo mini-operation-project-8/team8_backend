@@ -33,7 +33,7 @@ public class ChitChatControllerAdvice {
     @ExceptionHandler({NotFoundCommentException.class})
     public ResponseEntity<MsgCodeResponseDto> handlerNotFoundComment(NotFoundCommentException e) {
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(new MsgCodeResponseDto(e.getMessage()));
     }
 
