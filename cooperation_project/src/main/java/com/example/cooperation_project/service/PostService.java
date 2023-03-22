@@ -46,7 +46,7 @@ public class PostService {
     public List<PostResponseDto> getPosts() {
 
         List<Post> postList = postRepository
-            .findAllByOrderByModifiedAtDesc();
+            .findAllByOrderByCreatedAtDesc();
 
         return postList.stream()
             .map(PostResponseDto::new).toList();
@@ -118,7 +118,7 @@ public class PostService {
     public List<PostResponseDto> getPageOfPost(ReqPostPageableDto dto) {
 
         return postRepository
-            .findAllByOrderByModifiedAtDesc(configPageAble(dto))
+            .findAllByOrderByCreatedAtDesc(configPageAble(dto))
             .stream().map(PostResponseDto::new).toList();
     }
 
