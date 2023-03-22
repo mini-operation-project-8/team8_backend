@@ -5,6 +5,7 @@ import com.example.cooperation_project.dto.post.PostCommentResponseDto;
 import com.example.cooperation_project.dto.post.PostRequestDto;
 import com.example.cooperation_project.dto.post.PostResponseDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
+import com.example.cooperation_project.dto.post.RespTotalOfPostsDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.PostService;
 import java.util.List;
@@ -40,6 +41,14 @@ public class PostController {
         resp.addHeader("Total_Count_Posts",String.valueOf(count));
 
         return postService.getPageOfPost(dto);
+    }
+
+    @GetMapping("/posts/total")
+    public ResponseEntity<Object> getTotalOfPosts(){
+
+        Long total= postService.getCountAllPosts();
+
+        return ResponseEntity.ok(new RespTotalOfPostsDto(total));
     }
 
     @GetMapping("/posts/{postId}")
