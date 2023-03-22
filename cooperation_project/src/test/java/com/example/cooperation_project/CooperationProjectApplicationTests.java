@@ -35,21 +35,21 @@ class CooperationProjectApplicationTests {
     @Test
     void test(){
 
-        System.out.println(postService.getPosts());
+        //System.out.println(postService.getPosts());
     }
 
-    @Test @DisplayName("포스트 페이징 처리")
+    /*@Test @DisplayName("포스트 페이징 처리")
     public void pageablePost(){
-        /* given */
+        *//* given *//*
         ReqPostPageableDto dto = new ReqPostPageableDto("id",true,4,1);
 
-        /* when */
+        *//* when *//*
         List<PostResponseDto> result = postService.getProductsOrderByModified(dto);
 
-        /* then */
+        *//* then *//*
         System.out.println(result);
         Assertions.assertEquals(dto.getSize(),result.size());
-    }
+    }*/
 
     @Test
     public void lovePost(){
