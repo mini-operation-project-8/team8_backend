@@ -1,7 +1,7 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.comment.CommentRequestDto;
+import com.example.cooperation_project.dto.comment.CommentResponseDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,6 +53,10 @@ public class CommentController {
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return commentService.loveOk(id, userDetails.getUser());
+    }
+    @GetMapping("/{postId}/comments")
+    public List<CommentResponseDto> getComment (@PathVariable Long postId){
+        return commentService.getComment(postId);
     }
 
 //    @PutMapping("/posts/{postId}/comments/{commentId}/loves")

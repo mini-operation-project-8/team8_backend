@@ -14,8 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -111,5 +113,18 @@ public class CommentService {
 
     private boolean isMatchComment(Comment comment, User user){
         return comment.getUser().getUserId().equals(user.getUserId());
+    }
+
+    public List<CommentResponseDto> getComment(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
+        );
+        List<Comment> comments = commentRepository.findByPostId(post.getId());
+        List<CommentResponseDto> result = new ArrayList<>();
+        for (Comment comment: comments) {
+            result.add(new CommentResponseDto(comment));
+        }
+        return result;
+
     }
 }
