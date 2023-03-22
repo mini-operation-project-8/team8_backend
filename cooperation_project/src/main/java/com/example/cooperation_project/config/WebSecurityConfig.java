@@ -79,6 +79,7 @@ public class WebSecurityConfig {
 
         config.setAllowedOriginPatterns(Arrays.asList("*"));
 
+        config.addAllowedOrigin("https://team8-front.vercel.app");
 
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 
