@@ -61,7 +61,7 @@ public class WebSecurityConfig {
 
         http.authorizeRequests()
                 .antMatchers("/chitchat/auth/**").permitAll()
-            .antMatchers(HttpMethod.GET,"/chitchat/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/chitchat/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
@@ -79,6 +79,8 @@ public class WebSecurityConfig {
 
         config.setAllowedOriginPatterns(Arrays.asList("*"));
 
+        config.addAllowedOrigin("https://team8-front.vercel.app");
+
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 
         config.addAllowedMethod("*");
@@ -86,6 +88,7 @@ public class WebSecurityConfig {
         config.addAllowedHeader("*");
 
         config.setAllowCredentials(true);
+
 
         config.validateAllowCredentials();
 

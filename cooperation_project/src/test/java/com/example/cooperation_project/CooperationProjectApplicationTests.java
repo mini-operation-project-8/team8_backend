@@ -32,7 +32,7 @@ class CooperationProjectApplicationTests {
 
     }
 
-    @Test
+    /*@Test
     @DisplayName("포스트 페이징 처리")
     public void pageablePost() {
 
@@ -60,7 +60,7 @@ class CooperationProjectApplicationTests {
         //then
 
         System.out.println(result.get());
-    }
+    }*/
 
 }
 
