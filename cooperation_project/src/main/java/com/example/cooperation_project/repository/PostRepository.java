@@ -11,11 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findAllByOrderByModifiedAtDesc();
+    List<Post> findAllByOrderByCreatedAtDesc();
 
     Page<Post> findAll(Pageable pageable);
 
-    Page<Post> findAllByOrderByModifiedAtDesc(Pageable pageable);
+    Page<Post> findAllByOrderByCreatedAtDesc(Pageable pageable);
 
     /*@Query("select count ")
     Long findAllCount();*/
