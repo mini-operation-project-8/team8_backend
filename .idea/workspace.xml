@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="" />
+    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -295,7 +300,7 @@
       <workItem from="1679299923919" duration="24613000" />
       <workItem from="1679357202839" duration="15346000" />
       <workItem from="1679415487967" duration="2392000" />
-      <workItem from="1679450983940" duration="3380000" />
+      <workItem from="1679450983940" duration="3984000" />
     </task>
     <task id="LOCAL-00001" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
       <created>1679314426710</created>
@@ -395,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679454035063</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="pull전 commit">
+      <created>1679454591449</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1679454591449</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,7 +438,8 @@
     <MESSAGE value="CommentService 메소드 시그니처 예외 명시" />
     <MESSAGE value="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X" />
     <MESSAGE value="Comment 한개 조회 추가 요청 기능 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comment 한개 조회 추가 요청 기능 구현" />
+    <MESSAGE value="pull전 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="pull전 commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
