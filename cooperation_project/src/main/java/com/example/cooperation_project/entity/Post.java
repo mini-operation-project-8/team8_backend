@@ -29,15 +29,11 @@ public class Post extends Timestamped{
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
     @Column
-    private int love = 0;
+    private Long numOfLove = 0L;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     @Exclude
     private List<Comment> commentList = new ArrayList<>();
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
 
     public Post(PostRequestDto postRequestDto, User user){
         this.title = postRequestDto.getTitle();
@@ -45,11 +41,11 @@ public class Post extends Timestamped{
         this.user = user;
     }
     public void LoveOk() {
-        this.love++;
+        this.numOfLove++;
     }
 
     public void LoveCancel() {
-        this.love--;
+        this.numOfLove--;
     }
 
     public void update(PostRequestDto postRequestDto){
