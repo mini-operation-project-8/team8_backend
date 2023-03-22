@@ -2,10 +2,13 @@ package com.example.cooperation_project;
 
 import com.example.cooperation_project.dto.post.PostResponseDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
+import com.example.cooperation_project.entity.LovePost;
 import com.example.cooperation_project.entity.Post;
+import com.example.cooperation_project.repository.LovePostRepository;
 import com.example.cooperation_project.repository.PostRepository;
 import com.example.cooperation_project.service.PostService;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,28 +24,44 @@ class CooperationProjectApplicationTests {
     @Autowired
     private PostRepository postRepo;
 
+    @Autowired
+    private LovePostRepository lovePostRepo;
+
     @Test
     void contextLoads() {
 
     }
 
-    @Test
-    void test(){
+    /*@Test
+    @DisplayName("포스트 페이징 처리")
+    public void pageablePost() {
 
-        System.out.println(postService.getPosts());
-    }
+        //given
+        ReqPostPageableDto dto = new ReqPostPageableDto("id", true, 4, 1);
 
-    @Test @DisplayName("포스트 페이징 처리")
-    public void pageablePost(){
-        /* given */
-        ReqPostPageableDto dto = new ReqPostPageableDto("id",true,4,1);
+        //when
+        List<PostResponseDto> result = postService.getPageOfPosts(dto);
 
-        /* when */
-        List<PostResponseDto> result = postService.getProductsOrderByModified(dto);
-
-        /* then */
+        //then
         System.out.println(result);
-        Assertions.assertEquals(dto.getSize(),result.size());
+
+        Assertions.assertEquals(dto.getSize(), result.size());
     }
+
+    @Test
+    public void postCountAll() {
+        //given
+
+        //when
+
+        Optional<LovePost> result
+            = lovePostRepo.findLovePost(1L, "dignzh12");
+
+        //then
+
+        System.out.println(result.get());
+    }*/
 
 }
+
+

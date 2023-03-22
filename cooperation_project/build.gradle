@@ -54,6 +54,7 @@ jar {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
 //tasks.named('test') {
 //    useJUnitPlatform()
@@ -63,3 +64,9 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 >>>>>>> master
+=======
+/*
+tasks.named('test') {
+    useJUnitPlatform()
+}*/
+>>>>>>> 182a018c2feaabd44a1e7e23a5e32f72ff6a3e04

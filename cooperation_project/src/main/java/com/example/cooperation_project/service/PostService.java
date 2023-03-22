@@ -5,15 +5,11 @@ import com.example.cooperation_project.dto.post.PostCommentResponseDto;
 import com.example.cooperation_project.dto.post.PostRequestDto;
 import com.example.cooperation_project.dto.post.PostResponseDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
-import com.example.cooperation_project.entity.LovePost;
-import com.example.cooperation_project.entity.Post;
-import com.example.cooperation_project.entity.User;
-import com.example.cooperation_project.entity.UserRoleEnum;
+import com.example.cooperation_project.entity.*;
 import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.exception.NotFoundPostException;
-import com.example.cooperation_project.repository.LovePostRepository;
-import com.example.cooperation_project.repository.PostRepository;
-import com.example.cooperation_project.repository.UserRepository;
+import com.example.cooperation_project.repository.*;
+
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +27,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
     private final LovePostRepository lovePostRepository;
+    private final LoveCommentRepository loveCommentRepository;
+    private final UserRepository userRepository;
+
+
 
     @Transactional
-    public PostResponseDto createPost(PostRequestDto requestDto, User user) {
+    public PostResponseDto  createPost(PostRequestDto requestDto, User user) {
 
         Post post = postRepository.save(new Post(requestDto, user));
 
@@ -59,6 +60,12 @@ public class PostService {
         );
 
         return new PostCommentResponseDto(post);
+    }
+
+    @Transactional(readOnly = true)
+    public Long getCountAllPosts(){
+
+        return postRepository.countPosts();
     }
 
     @Transactional
@@ -88,7 +95,19 @@ public class PostService {
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
+
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
+            List<Comment> commentList = post.getCommentList();
+            for(Comment comment: commentList){
+                List<LoveComment> loveComments = user.getLoveCommentList();
+                for(LoveComment loveComment: loveComments){
+                    if(user.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
+                        loveCommentRepository.delete(loveComment);
+                    }
+                }
+
+                commentRepository.delete(comment);
+            }
             postRepository.deleteById(postId);
             return responseDto;
         } else {
@@ -96,7 +115,7 @@ public class PostService {
         }
     }
 
-    public List<PostResponseDto> getProductsOrderByModified(ReqPostPageableDto dto) {
+    public List<PostResponseDto> getPageOfPost(ReqPostPageableDto dto) {
 
         return postRepository
             .findAllByOrderByModifiedAtDesc(configPageAble(dto))
@@ -117,14 +136,17 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(
             () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
         );
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
 
-        List<LovePost> boardLoveList = user.getLovePostList();
+        List<LovePost> boardLoveList = user1.getLovePostList();
 
         if (user != null) {
 
             for (LovePost lovePost : boardLoveList) {
                 if (lovePost.getPost().getId() == post.getId()
-                    && lovePost.getUser().getUserId() == user.getUserId()) {
+                    && lovePost.getUser().getId() == user.getId()) {
                     if (lovePost.isLove() == false) {
                         lovePost.update();
                         post.LoveOk();
@@ -134,26 +156,16 @@ public class PostService {
                         post.LoveCancel();
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
-                } else {
-                    LovePost lovePost1 = new LovePost(post, user);
-                    lovePostRepository.save(lovePost1);
-                    lovePost1.update();
-                    post.LoveOk();
-                    return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
                 }
             }
-            if (boardLoveList.size() == 0) {
                 LovePost lovePost1 = new LovePost(post, user);
                 lovePostRepository.save(lovePost1);
                 lovePost1.update();
                 post.LoveOk();
                 return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
-            }
-
         } else {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
-        return null;
     }
 
     private boolean isMatchUser(Post post, User user) {

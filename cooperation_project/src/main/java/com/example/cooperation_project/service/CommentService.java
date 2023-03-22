@@ -24,7 +24,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final PostRepository postRepository;
     private final LoveCommentRepository loveCommentRepository;
-
+    private final UserRepository userRepository;
 
     @Transactional
     public CommentResponseDto createdComment(Long postId, CommentRequestDto commentRequestDto, User user){
@@ -77,12 +77,16 @@ public class CommentService {
                 () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
 
-        List<LoveComment> commentLoveList = user.getLoveCommentList();
+        User user1 = userRepository.findById(user.getId()).orElseThrow(
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+        );
+
+        List<LoveComment> commentLoveList = user1.getLoveCommentList();
 
         if (user != null) {
 
             for (LoveComment loveComment : commentLoveList) {
-                if (loveComment.getUser().getUserId() == comment.getUser().getUserId() && loveComment.getUser().getUserId() == user.getUserId()) {
+                if (loveComment.getUser().getId() == comment.getUser().getId() && loveComment.getComment().getCommentId() == comment.getCommentId()) {
                     if (loveComment.isLove() == false) {
                         loveComment.update();
                         comment.LoveOk();
@@ -92,26 +96,17 @@ public class CommentService {
                         comment.LoveCancel();
                         return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
                     }
-                } else {
-                    LoveComment commentLove = new LoveComment(comment, user);
-                    loveCommentRepository.save(commentLove);
-                    commentLove.update();
-                    comment.LoveOk();
-                    return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
                 }
             }
-            if(commentLoveList.size() == 0){
                 LoveComment commentLove = new LoveComment(comment, user);
                 loveCommentRepository.save(commentLove);
                 commentLove.update();
                 comment.LoveOk();
                 return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
-            }
 
         } else {
             throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
         }
-        return null;
     }
 
     private boolean isMatchComment(Comment comment, User user){

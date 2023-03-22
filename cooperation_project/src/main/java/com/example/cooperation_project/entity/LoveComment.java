@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class LoveComment extends Timestamped{
+public class LoveComment{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class LoveComment extends Timestamped{
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "COMMENTID",nullable = false)
+    @JoinColumn(name = "COMMENT_ID",nullable = false)
     private Comment comment;
     @Column
     private boolean isLove = false;

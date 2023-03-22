@@ -60,13 +60,11 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/chitchat/**").permitAll()
+                .antMatchers("/chitchat/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/chitchat/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
-
-
-         http.formLogin().loginPage("/api/user/login").permitAll();
 
         http.exceptionHandling().accessDeniedPage("/api/user/forbidden");
 
@@ -81,6 +79,7 @@ public class WebSecurityConfig {
 
         config.setAllowedOriginPatterns(Arrays.asList("*"));
 
+        config.addAllowedOrigin("https://team8-front.vercel.app");
 
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 

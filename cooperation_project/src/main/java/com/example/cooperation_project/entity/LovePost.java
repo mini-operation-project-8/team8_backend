@@ -4,26 +4,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import lombok.ToString;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class LovePost extends Timestamped{
+public class LovePost{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lovepostId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "POSTG_ID",nullable = false)
+    @JoinColumn(name = "POST_ID",nullable = false)
     private Post post;
     @Column
     private boolean isLove = false;
-
     public LovePost(Post post, User user) {
         this.post = post;
         this.user = user;
@@ -35,7 +35,5 @@ public class LovePost extends Timestamped{
         }else{
             this.isLove = false;
         }
-
-
     }
 }
