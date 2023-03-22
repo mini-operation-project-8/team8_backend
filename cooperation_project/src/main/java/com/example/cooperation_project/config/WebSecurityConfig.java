@@ -79,15 +79,13 @@ public class WebSecurityConfig {
 
         config.setAllowedOriginPatterns(Arrays.asList("*"));
 
-
         config.addExposedHeader(JwtUtil.AUTHORIZATION_HEADER);
 
         config.addAllowedMethod("*");
 
         config.addAllowedHeader("*");
-
+        
         config.setAllowCredentials(true);
-
 
         config.validateAllowCredentials();
 

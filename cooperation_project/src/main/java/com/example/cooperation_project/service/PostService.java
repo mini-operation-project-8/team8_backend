@@ -40,7 +40,7 @@ public class PostService {
     private final LovePostRepository lovePostRepo;
 
     @Transactional
-    public PostResponseDto createPost(PostRequestDto requestDto, User user) {
+    public PostResponseDto  createPost(PostRequestDto requestDto, User user) {
 
         Post post = postRepository.save(new Post(requestDto, user));
 
