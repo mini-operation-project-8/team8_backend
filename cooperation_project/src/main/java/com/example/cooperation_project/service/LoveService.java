@@ -38,17 +38,17 @@ public class LoveService {
     public boolean loveOk(Long id, User user) {
 
         Post post = postRepository.findById(id).orElseThrow(
-            () -> new NotFoundPostException("게시글이 존재하지 않습니다.")
+                () -> new NotFoundPostException("게시글이 존재하지 않습니다.")
         );
         User user1 = userRepository.findById(user.getId()).orElseThrow(
-            () -> new NotFoundUserException("유저가 존재하지 않습니다.")
+                () -> new NotFoundUserException("유저가 존재하지 않습니다.")
         );
 
         List<LovePost> boardLoveList = user1.getLovePostList();
 
         for (LovePost lovePost : boardLoveList) {
             if (lovePost.getPost().getId() == post.getId()
-                && lovePost.getUser().getId() == user.getId()) {
+                    && lovePost.getUser().getId() == user.getId()) {
 
                 if (!lovePost.isLove()) {
                     lovePost.update();
@@ -75,11 +75,11 @@ public class LoveService {
     public ResponseEntity<Map<String, HttpStatus>> loveOkOnComment(Long id, User user) {
 
         Comment comment = commentRepository.findById(id).orElseThrow(
-            () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
+                () -> new IllegalArgumentException("댓글이 존재하지 않습니다.")
         );
 
         User user1 = userRepository.findById(user.getId()).orElseThrow(
-            () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
+                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
         );
 
         List<LoveComment> commentLoveList = user1.getLoveCommentList();
