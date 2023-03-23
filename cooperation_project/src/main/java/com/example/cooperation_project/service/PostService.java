@@ -90,19 +90,6 @@ public class PostService {
             .stream().map(RespPostDto::new).toList();
     }
 
-    private Pageable configPageAble(ReqPostPageableDto dto){
-
-        Sort.Direction direction = dto.isAsc()? Direction.ASC : Direction.DESC;
-        Sort sort = Sort.by(direction,dto.getSortBy());
-
-        return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
-    }
-
-    private boolean isMatchUser(Post post, User user) {
-
-        return post.getUser().getUserId().equals(user.getUserId());
-    }
-
     @Transactional
     public void delete(Long postId, User user)
         throws NotFoundPostException, NotAuthException {
@@ -119,6 +106,19 @@ public class PostService {
             throw new NotAuthException("해당 권한이 없습니다");
         }
 
+    }
+
+    private Pageable configPageAble(ReqPostPageableDto dto){
+
+        Sort.Direction direction = dto.isAsc()? Direction.ASC : Direction.DESC;
+        Sort sort = Sort.by(direction,dto.getSortBy());
+
+        return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
+    }
+
+    private boolean isMatchUser(Post post, User user) {
+
+        return post.getUser().getUserId().equals(user.getUserId());
     }
 
 }

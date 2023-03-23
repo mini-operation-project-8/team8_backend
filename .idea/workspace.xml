@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/CooperationProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/CooperationProjectApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,46 +17,17 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-    <projectState path="$PROJECT_DIR$/cooperation_project">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$/cooperation_project">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="c32885430cbd20fde567d1a852a35ac8989b9538" />
+        <entry key="$PROJECT_DIR$" value="22990292cce22dd6bcf4960742a067848a8fcb93" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2N8ljkaNyh3Pk2WevDRwknMEsQY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -66,65 +36,20 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dignz/IdeaProjects/team8_backend2/cooperation_project/src/main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;31265d39ebed910eacb76a0b7ce29f4c&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/parkm/Downloads/hanghae99/sparta/mj_back/cooperation_project",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\dignz\IdeaProjects\team8_backend2\cooperation_project\src\main" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.example.cooperation_project.repository" />
-      <recent name="com.example.cooperation_project.service" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.cooperation_project.exception" />
-      <recent name="com.example.cooperation_project.aop" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager" selected="Spring Boot.CooperationProjectApplication">
-    <configuration default="true" type="DjangoTestsConfigurationType">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="CooperationProjectApplicationTests.LovePost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="team8_backend2.cooperation_project.test" />
       <extension name="coverage">
@@ -136,22 +61,6 @@
       <option name="PACKAGE_NAME" value="com.example.cooperation_project" />
       <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.CooperationProjectApplicationTests" />
       <option name="METHOD_NAME" value="LovePost" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CooperationProjectApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="team8_backend2.cooperation_project.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.cooperation_project.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.cooperation_project" />
-      <option name="MAIN_CLASS_NAME" value="com.example.cooperation_project.CooperationProjectApplicationTests" />
-      <option name="METHOD_NAME" value="contextLoads" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -205,90 +114,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="ADDITIONAL_ARGS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration name="CooperationProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="CooperationProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="team8_backend2.cooperation_project.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.cooperation_project.CooperationProjectApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.cooperation_project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.CooperationProjectApplication" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.testCount" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.postCountAll" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.pageablePost" />
         <item itemvalue="JUnit.CooperationProjectApplicationTests.LovePost" />
-        <item itemvalue="JUnit.CooperationProjectApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>
@@ -301,153 +146,22 @@
       <option name="presentableId" value="Default" />
       <updated>1679053727254</updated>
       <workItem from="1679053728347" duration="51000" />
-      <workItem from="1679299923919" duration="24613000" />
-      <workItem from="1679357202839" duration="15346000" />
-      <workItem from="1679415487967" duration="2392000" />
-      <workItem from="1679450983940" duration="28432000" />
-      <workItem from="1679542418826" duration="1831000" />
     </task>
-    <task id="LOCAL-00001" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
-      <created>1679314426710</created>
+    <task id="LOCAL-00001" summary="요청 post 공백 유효성 검사 추가">
+      <created>1679550734546</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1679314426710</updated>
+      <updated>1679550734546</updated>
     </task>
-    <task id="LOCAL-00002" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
-      <created>1679314501519</created>
+    <task id="LOCAL-00002" summary="요청 post 공백 유효성 검사 추가">
+      <created>1679550922043</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1679314501519</updated>
+      <updated>1679550922043</updated>
     </task>
-    <task id="LOCAL-00003" summary="PostService 예외 반환, controller 반환 타입 리팩토링">
-      <created>1679357616328</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1679357616328</updated>
-    </task>
-    <task id="LOCAL-00004" summary="빠진 RageableDto,NotAuthException 추가">
-      <created>1679359625547</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1679359625547</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Post 페이징 구현">
-      <created>1679366414609</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1679366414609</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Comment fixme">
-      <created>1679369827823</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1679369827823</updated>
-    </task>
-    <task id="LOCAL-00007" summary="post join column 에 의한 bug fix">
-      <created>1679374433606</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1679374433606</updated>
-    </task>
-    <task id="LOCAL-00008" summary="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합">
-      <created>1679377433996</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1679377433996</updated>
-    </task>
-    <task id="LOCAL-00009" summary="jwtAuthFilter shouldNotFilter 추가">
-      <created>1679381915056</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1679381915056</updated>
-    </task>
-    <task id="LOCAL-00010" summary="PostController getPosts 요청 reqParam으로 변경">
-      <created>1679383631860</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1679383631860</updated>
-    </task>
-    <task id="LOCAL-00011" summary="UserService 리팩토링">
-      <created>1679389279376</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1679389279376</updated>
-    </task>
-    <task id="LOCAL-00012" summary="CommentService 메소드 시그니처 예외 명시">
-      <created>1679389841882</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1679389841882</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X">
-      <created>1679414048740</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1679414048740</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Comment 한개 조회 추가 요청 기능 구현">
-      <created>1679454035063</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1679454035063</updated>
-    </task>
-    <task id="LOCAL-00015" summary="pull전 commit">
-      <created>1679454591449</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1679454591449</updated>
-    </task>
-    <task id="LOCAL-00016" summary="스프링부트 Test 코드 수정">
-      <created>1679455001959</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1679455001959</updated>
-    </task>
-    <task id="LOCAL-00017" summary="변동사항 없는 commit">
-      <created>1679471932293</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1679471932293</updated>
-    </task>
-    <task id="LOCAL-00018" summary="문주님 좋아요 기능으로 코드 변환, 나머지 commit으로 인해 코드 오류 수정">
-      <created>1679476951957</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1679476951957</updated>
-    </task>
-    <task id="LOCAL-00019" summary="post total 갯수 반환 구현">
-      <created>1679494757243</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1679494757243</updated>
-    </task>
-    <task id="LOCAL-00020" summary="post total 갯수 반환 구현">
-      <created>1679494848623</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1679494848623</updated>
-    </task>
-    <option name="localTasksCounter" value="21" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,47 +172,14 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="CommmentController createComment 메소드 반환 타입 리팩토링" />
-    <MESSAGE value="PostService 예외 반환, controller 반환 타입 리팩토링" />
-    <MESSAGE value="빠진 RageableDto,NotAuthException 추가" />
-    <MESSAGE value="Post 페이징 구현" />
-    <MESSAGE value="Comment fixme" />
-    <MESSAGE value="post join column 에 의한 bug fix" />
-    <MESSAGE value="ApiUseTime 테이블 user_id joinColumn bug fix,&#10;jwtFilter shouldNotFilter method 삭제 후 security Config로 통합" />
-    <MESSAGE value="jwtAuthFilter shouldNotFilter 추가" />
-    <MESSAGE value="PostController getPosts 요청 reqParam으로 변경" />
-    <MESSAGE value="UserService 리팩토링" />
-    <MESSAGE value="CommentService 메소드 시그니처 예외 명시" />
-    <MESSAGE value="Post, Comment에 대한 좋아요 구현 (LoveService)&#10;-&gt; comment Response Dto에 대한 좋아요 갯수 반환은 아직 구현 X" />
-    <MESSAGE value="Comment 한개 조회 추가 요청 기능 구현" />
-    <MESSAGE value="pull전 commit" />
-    <MESSAGE value="스프링부트 Test 코드 수정" />
-    <MESSAGE value="변동사항 없는 commit" />
-    <MESSAGE value="문주님 좋아요 기능으로 코드 변환, 나머지 commit으로 인해 코드 오류 수정" />
-    <MESSAGE value="post total 갯수 반환 구현" />
-    <option name="LAST_COMMIT_MESSAGE" value="post total 갯수 반환 구현" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="요청 post 공백 유효성 검사 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="요청 post 공백 유효성 검사 추가" />
   </component>
 </project>

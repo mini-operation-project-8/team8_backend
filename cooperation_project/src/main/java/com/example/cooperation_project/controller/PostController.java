@@ -11,10 +11,12 @@ import com.example.cooperation_project.service.LoveService;
 import com.example.cooperation_project.service.PostService;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -29,10 +31,11 @@ public class PostController {
     private final LoveService loveService;
 
     @PostMapping("/posts")
-    public RespPostDto createPost(@RequestBody ReqPostDto reqPostDto,
+    public ResponseEntity<Object> createPost(@RequestBody @Valid ReqPostDto reqPostDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.createPost(reqPostDto, userDetails.getUser());
+
+        return ResponseEntity.ok(postService.createPost(reqPostDto, userDetails.getUser()));
     }
 
     @GetMapping("/posts")
@@ -40,31 +43,31 @@ public class PostController {
 
         Long count = postService.getCountAllPosts();
 
-        resp.addHeader("Total_Count_Posts",String.valueOf(count));
+        resp.addHeader("Total_Count_Posts", String.valueOf(count));
 
         return postService.getPageOfPost(dto);
     }
 
     @GetMapping("/posts/total")
-    public ResponseEntity<Object> getTotalOfPosts(){
+    public ResponseEntity<Object> getTotalOfPosts() {
 
-        Long total= postService.getCountAllPosts();
+        Long total = postService.getCountAllPosts();
 
         return ResponseEntity.ok(new RespTotalOfPostsDto(total));
     }
 
     @GetMapping("/posts/{postId}")
-    public RespPostCommentDto getPostsId(@PathVariable Long postId) {
+    public ResponseEntity<Object> getPostsId(@PathVariable Long postId) {
 
-        return postService.getPostsId(postId);
+        return ResponseEntity.ok(postService.getPostsId(postId));
     }
 
     @PatchMapping("/posts/{postId}")
-    public RespPostDto update(@PathVariable Long postId,
+    public ResponseEntity<Object> update(@PathVariable Long postId,
         @RequestBody ReqPostDto reqPostDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.update(postId, reqPostDto, userDetails.getUser());
+        return ResponseEntity.ok(postService.update(postId, reqPostDto, userDetails.getUser()));
     }
 
     @DeleteMapping("/posts/{postId}")
@@ -84,7 +87,7 @@ public class PostController {
 
         boolean checked = loveService.loveOk(postId, userDetails.getUser());
 
-        return checked?
+        return checked ?
             ResponseEntity.ok("게시글을 좋아요 했습니다.") :
             ResponseEntity.ok("좋아요를 취소 했습니다.");
     }
