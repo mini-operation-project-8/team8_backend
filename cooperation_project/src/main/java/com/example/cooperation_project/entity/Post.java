@@ -31,7 +31,7 @@ public class Post extends Timestamped{
     @Column
     private Long numOfLove = 0L;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 
     public Post(ReqPostDto reqPostDto, User user){

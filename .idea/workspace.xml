@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/ReqCommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/LoveService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/aop/ChitChatControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/MsgCodeResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/RespMsgDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/CommentRequestDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/CommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/comment/RespCommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostCommentResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/RespPostCommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/ReqPostDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/PostResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/dto/post/RespPostDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/test/java/com/example/cooperation_project/CooperationProjectApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +48,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="0ef5ab25dc937941e613021fcd1fc593fd65c062" />
+        <entry key="$PROJECT_DIR$" value="c32885430cbd20fde567d1a852a35ac8989b9538" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
