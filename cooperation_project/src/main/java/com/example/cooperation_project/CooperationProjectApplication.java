@@ -8,15 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableJpaAuditing
-@EnableScheduling
+/*@EnableScheduling*/
 @SpringBootApplication
 public class CooperationProjectApplication {
-
-    @PostConstruct
-    public void started(){
-
-        TimeZone.setDefault(TimeZone.getTimeZone("KST"));
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(CooperationProjectApplication.class, args);
