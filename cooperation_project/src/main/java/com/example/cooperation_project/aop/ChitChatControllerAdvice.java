@@ -9,6 +9,7 @@ import com.example.cooperation_project.exception.NotFoundUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -52,5 +53,14 @@ public class ChitChatControllerAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(new RespMsgDto(e.getMessage()));
     }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ResponseEntity<RespMsgDto> handlerValidException(
+        MethodArgumentNotValidException e) {
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(new RespMsgDto(e.getMessage()));
+    }
+
 
 }
