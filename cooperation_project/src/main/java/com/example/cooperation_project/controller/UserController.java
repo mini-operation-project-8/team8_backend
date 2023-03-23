@@ -32,5 +32,6 @@ public class UserController {
         resp.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
 
         return ResponseEntity.ok(new RespMsgDto("로그인 성공"));
+        
     }
 }

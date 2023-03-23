@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/LoveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/LoveService.java" afterDir="false" />
-    </list>
+    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="LoveService에 대한 리팩토링" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679558819984</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="리팩토링">
+      <created>1679564376200</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679564376200</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +192,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="요청 post 공백 유효성 검사 추가" />
     <MESSAGE value="timeStamp bug에 대한 fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="timeStamp bug에 대한 fix" />
+    <MESSAGE value="리팩토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="리팩토링" />
   </component>
 </project>
