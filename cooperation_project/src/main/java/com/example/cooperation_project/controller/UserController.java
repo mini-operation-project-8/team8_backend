@@ -1,6 +1,6 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
+import com.example.cooperation_project.dto.RespMsgDto;
 import com.example.cooperation_project.dto.auth.SignupRequestDto;
 import com.example.cooperation_project.jwt.JwtUtil;
 import com.example.cooperation_project.service.UserService;
@@ -22,7 +22,7 @@ public class UserController {
 
         userService.signup(dto);
 
-        return ResponseEntity.ok(new MsgCodeResponseDto("회원가입 성공"));
+        return ResponseEntity.ok(new RespMsgDto("회원가입 성공"));
     }
     @PostMapping("/chitchat/auth/login")
     public ResponseEntity<Object> login(@RequestBody SignupRequestDto dto, HttpServletResponse resp){
@@ -31,6 +31,6 @@ public class UserController {
 
         resp.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
 
-        return ResponseEntity.ok(new MsgCodeResponseDto("로그인 성공"));
+        return ResponseEntity.ok(new RespMsgDto("로그인 성공"));
     }
 }
