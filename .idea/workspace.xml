@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="" />
+    <list default="true" id="5647de45-f569-4046-8268-823ea511b9b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cooperation_project/src/main/java/com/example/cooperation_project/service/PostService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +48,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="0ef5ab25dc937941e613021fcd1fc593fd65c062" />
+        <entry key="$PROJECT_DIR$" value="c32885430cbd20fde567d1a852a35ac8989b9538" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -300,7 +304,8 @@
       <workItem from="1679299923919" duration="24613000" />
       <workItem from="1679357202839" duration="15346000" />
       <workItem from="1679415487967" duration="2392000" />
-      <workItem from="1679450983940" duration="25676000" />
+      <workItem from="1679450983940" duration="28432000" />
+      <workItem from="1679542418826" duration="1831000" />
     </task>
     <task id="LOCAL-00001" summary="CommmentController createComment 메소드 반환 타입 리팩토링">
       <created>1679314426710</created>
@@ -435,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679494757243</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="post total 갯수 반환 구현">
+      <created>1679494848623</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1679494848623</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

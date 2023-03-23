@@ -1,24 +1,25 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.post.PostCommentResponseDto;
-import com.example.cooperation_project.dto.post.PostRequestDto;
-import com.example.cooperation_project.dto.post.PostResponseDto;
+import com.example.cooperation_project.dto.post.ReqPostDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
-import com.example.cooperation_project.entity.*;
+import com.example.cooperation_project.dto.post.RespPostCommentDto;
+import com.example.cooperation_project.dto.post.RespPostDto;
+import com.example.cooperation_project.entity.Post;
+import com.example.cooperation_project.entity.User;
+import com.example.cooperation_project.entity.UserRoleEnum;
 import com.example.cooperation_project.exception.NotAuthException;
 import com.example.cooperation_project.exception.NotFoundPostException;
-import com.example.cooperation_project.repository.*;
-
+import com.example.cooperation_project.repository.CommentRepository;
+import com.example.cooperation_project.repository.LoveCommentRepository;
+import com.example.cooperation_project.repository.LovePostRepository;
+import com.example.cooperation_project.repository.PostRepository;
+import com.example.cooperation_project.repository.UserRepository;
 import java.util.List;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,39 +28,33 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final CommentRepository commentRepository;
-    private final LovePostRepository lovePostRepository;
-    private final LoveCommentRepository loveCommentRepository;
-    private final UserRepository userRepository;
-
-
 
     @Transactional
-    public PostResponseDto  createPost(PostRequestDto requestDto, User user) {
+    public RespPostDto createPost(ReqPostDto requestDto, User user) {
 
         Post post = postRepository.save(new Post(requestDto, user));
 
-        return new PostResponseDto(post);
+        return new RespPostDto(post);
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponseDto> getPosts() {
+    public List<RespPostDto> getPosts() {
 
         List<Post> postList = postRepository
             .findAllByOrderByCreatedAtDesc();
 
         return postList.stream()
-            .map(PostResponseDto::new).toList();
+            .map(RespPostDto::new).toList();
     }
 
     @Transactional(readOnly = true)
-    public PostCommentResponseDto getPostsId(Long postId) throws NotFoundPostException {
+    public RespPostCommentDto getPostsId(Long postId) throws NotFoundPostException {
 
         Post post = postRepository.findById(postId).orElseThrow(
             () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
         );
 
-        return new PostCommentResponseDto(post);
+        return new RespPostCommentDto(post);
     }
 
     @Transactional(readOnly = true)
@@ -69,7 +64,7 @@ public class PostService {
     }
 
     @Transactional
-    public PostResponseDto update(Long postId, PostRequestDto postRequestDto, User user)
+    public RespPostDto update(Long postId, ReqPostDto reqPostDto, User user)
         throws NotFoundPostException, NotAuthException {
 
         Post post = postRepository.findById(postId).orElseThrow(
@@ -77,9 +72,9 @@ public class PostService {
         );
 
         if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
-            post.update(postRequestDto);
+            post.update(reqPostDto);
 
-            return new PostResponseDto(post);
+            return new RespPostDto(post);
 
         } else {
 
@@ -87,39 +82,12 @@ public class PostService {
         }
     }
 
-    @Transactional
-    public MsgCodeResponseDto delete(Long postId, User user) {
-        MsgCodeResponseDto responseDto = new MsgCodeResponseDto("");
 
-        Post post = postRepository.findById(postId).orElseThrow(
-            () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
-        );
-
-
-        if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
-            List<Comment> commentList = post.getCommentList();
-            for(Comment comment: commentList){
-                List<LoveComment> loveComments = user.getLoveCommentList();
-                for(LoveComment loveComment: loveComments){
-                    if(user.getId() == loveComment.getUser().getId() && comment.getCommentId() == loveComment.getComment().getCommentId()){
-                        loveCommentRepository.delete(loveComment);
-                    }
-                }
-
-                commentRepository.delete(comment);
-            }
-            postRepository.deleteById(postId);
-            return responseDto;
-        } else {
-            throw new NotAuthException("해당 권한이 없습니다");
-        }
-    }
-
-    public List<PostResponseDto> getPageOfPost(ReqPostPageableDto dto) {
+    public List<RespPostDto> getPageOfPost(ReqPostPageableDto dto) {
 
         return postRepository
             .findAllByOrderByCreatedAtDesc(configPageAble(dto))
-            .stream().map(PostResponseDto::new).toList();
+            .stream().map(RespPostDto::new).toList();
     }
 
     private Pageable configPageAble(ReqPostPageableDto dto){
@@ -130,47 +98,27 @@ public class PostService {
         return PageRequest.of(dto.getPage()-1,dto.getSize(),sort);
     }
 
-    @Transactional
-    public ResponseEntity<Map<String, HttpStatus>> loveOk(Long id, User user) {
-
-        Post post = postRepository.findById(id).orElseThrow(
-            () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")
-        );
-        User user1 = userRepository.findById(user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("유저가 존재하지 않습니다.")
-        );
-
-        List<LovePost> boardLoveList = user1.getLovePostList();
-
-        if (user != null) {
-
-            for (LovePost lovePost : boardLoveList) {
-                if (lovePost.getPost().getId() == post.getId()
-                    && lovePost.getUser().getId() == user.getId()) {
-                    if (lovePost.isLove() == false) {
-                        lovePost.update();
-                        post.LoveOk();
-                        return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
-                    } else {
-                        lovePost.update();
-                        post.LoveCancel();
-                        return new ResponseEntity("좋아요를 취소 했습니다.", HttpStatus.OK);
-                    }
-                }
-            }
-                LovePost lovePost1 = new LovePost(post, user);
-                lovePostRepository.save(lovePost1);
-                lovePost1.update();
-                post.LoveOk();
-                return new ResponseEntity("게시글을 좋아요 했습니다.", HttpStatus.OK);
-        } else {
-            throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
-        }
-    }
-
     private boolean isMatchUser(Post post, User user) {
 
         return post.getUser().getUserId().equals(user.getUserId());
+    }
+
+    @Transactional
+    public void delete(Long postId, User user)
+        throws NotFoundPostException, NotAuthException {
+
+        Post post = postRepository.findById(postId).orElseThrow(
+            () -> new NotFoundPostException("해당 게시글이 존재하지 않습니다.")
+        );
+
+        if (isMatchUser(post, user) || user.getRole() == UserRoleEnum.ADMIN) {
+            postRepository.deleteById(postId);
+
+
+        } else {
+            throw new NotAuthException("해당 권한이 없습니다");
+        }
+
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.cooperation_project.service;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
 import com.example.cooperation_project.dto.auth.SignupRequestDto;
 import com.example.cooperation_project.entity.User;
 import com.example.cooperation_project.entity.UserRoleEnum;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Service

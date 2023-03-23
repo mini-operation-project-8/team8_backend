@@ -1,6 +1,6 @@
 package com.example.cooperation_project.entity;
 
-import com.example.cooperation_project.dto.post.PostRequestDto;
+import com.example.cooperation_project.dto.post.ReqPostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,13 +31,12 @@ public class Post extends Timestamped{
     @Column
     private Long numOfLove = 0L;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
-    @Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 
-    public Post(PostRequestDto postRequestDto, User user){
-        this.title = postRequestDto.getTitle();
-        this.content = postRequestDto.getContent();
+    public Post(ReqPostDto reqPostDto, User user){
+        this.title = reqPostDto.getTitle();
+        this.content = reqPostDto.getContent();
         this.user = user;
     }
     public void LoveOk() {
@@ -48,9 +47,9 @@ public class Post extends Timestamped{
         this.numOfLove--;
     }
 
-    public void update(PostRequestDto postRequestDto){
-        this.title = postRequestDto.getTitle();
-        this.content = postRequestDto.getContent();
+    public void update(ReqPostDto reqPostDto){
+        this.title = reqPostDto.getTitle();
+        this.content = reqPostDto.getContent();
     }
 
 

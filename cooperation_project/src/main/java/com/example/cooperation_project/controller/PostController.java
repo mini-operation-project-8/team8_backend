@@ -1,15 +1,15 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.MsgCodeResponseDto;
-import com.example.cooperation_project.dto.post.PostCommentResponseDto;
-import com.example.cooperation_project.dto.post.PostRequestDto;
-import com.example.cooperation_project.dto.post.PostResponseDto;
+import com.example.cooperation_project.dto.RespMsgDto;
+import com.example.cooperation_project.dto.post.RespPostCommentDto;
+import com.example.cooperation_project.dto.post.ReqPostDto;
+import com.example.cooperation_project.dto.post.RespPostDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
 import com.example.cooperation_project.dto.post.RespTotalOfPostsDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
+import com.example.cooperation_project.service.LoveService;
 import com.example.cooperation_project.service.PostService;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,15 +26,17 @@ public class PostController {
 
     private final PostService postService;
 
+    private final LoveService loveService;
+
     @PostMapping("/posts")
-    public PostResponseDto createPost(@RequestBody PostRequestDto postRequestDto,
+    public RespPostDto createPost(@RequestBody ReqPostDto reqPostDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.createPost(postRequestDto, userDetails.getUser());
+        return postService.createPost(reqPostDto, userDetails.getUser());
     }
 
     @GetMapping("/posts")
-    public List<PostResponseDto> getPosts(ReqPostPageableDto dto, HttpServletResponse resp) {
+    public List<RespPostDto> getPosts(ReqPostPageableDto dto, HttpServletResponse resp) {
 
         Long count = postService.getCountAllPosts();
 
@@ -52,17 +54,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/{postId}")
-    public PostCommentResponseDto getPostsId(@PathVariable Long postId) {
+    public RespPostCommentDto getPostsId(@PathVariable Long postId) {
 
         return postService.getPostsId(postId);
     }
 
     @PatchMapping("/posts/{postId}")
-    public PostResponseDto update(@PathVariable Long postId,
-        @RequestBody PostRequestDto postRequestDto,
+    public RespPostDto update(@PathVariable Long postId,
+        @RequestBody ReqPostDto reqPostDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.update(postId, postRequestDto, userDetails.getUser());
+        return postService.update(postId, reqPostDto, userDetails.getUser());
     }
 
     @DeleteMapping("/posts/{postId}")
@@ -72,15 +74,19 @@ public class PostController {
         postService.delete(postId, userDetails.getUser());
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
-            .body(new MsgCodeResponseDto("해당 자료 삭제 완료"));
+            .body(new RespMsgDto("해당 자료 삭제 완료"));
     }
 
 
     @PutMapping("/posts/{postId}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> PostLoveOk(@PathVariable Long postId,
+    public ResponseEntity<Object> PostLoveOk(@PathVariable Long postId,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        return postService.loveOk(postId, userDetails.getUser());
+        boolean checked = loveService.loveOk(postId, userDetails.getUser());
+
+        return checked?
+            ResponseEntity.ok("게시글을 좋아요 했습니다.") :
+            ResponseEntity.ok("좋아요를 취소 했습니다.");
     }
 
 

@@ -1,7 +1,7 @@
 package com.example.cooperation_project.controller;
 
-import com.example.cooperation_project.dto.comment.CommentRequestDto;
-import com.example.cooperation_project.dto.comment.CommentResponseDto;
+import com.example.cooperation_project.dto.comment.ReqCommentDto;
+import com.example.cooperation_project.dto.comment.RespCommentDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -20,20 +20,18 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    //private final LoveService loveService;
-
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,
-        @RequestBody CommentRequestDto commentRequestDto,
+        @RequestBody ReqCommentDto reqCommentDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return ResponseEntity.ok(
-            commentService.createdComment(postId, commentRequestDto, userDetails.getUser()));
+            commentService.createdComment(postId, reqCommentDto, userDetails.getUser()));
     }
 
     @PatchMapping("/{postId}/comments/{commentId}")
     public ResponseEntity<Object> updateComment(@PathVariable Long postId,
-        @PathVariable Long commentId, @RequestBody CommentRequestDto requestDto,
+        @PathVariable Long commentId, @RequestBody ReqCommentDto requestDto,
         @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return ResponseEntity.ok(
@@ -55,20 +53,8 @@ public class CommentController {
         return commentService.loveOk(id, userDetails.getUser());
     }
     @GetMapping("/{postId}/comments")
-    public List<CommentResponseDto> getComment (@PathVariable Long postId){
+    public List<RespCommentDto> getComment (@PathVariable Long postId){
         return commentService.getComment(postId);
     }
-
-//    @PutMapping("/posts/{postId}/comments/{commentId}/loves")
-//    public ResponseEntity<Object> loveComment(@PathVariable Long commentId,
-//        @AuthenticationPrincipal UserDetailsImpl details, @PathVariable String postId) {
-//
-//        boolean checkedLove = loveService.loveOnComment(commentId,details.getUser());
-//
-//
-//        return checkedLove ?
-//            ResponseEntity.ok(new MsgCodeResponseDto("좋아요 on")) :
-//            ResponseEntity.ok(new MsgCodeResponseDto("좋아요 off"));
-//    }
 
 }
