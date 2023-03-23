@@ -84,8 +84,6 @@ public class LoveService {
 
         List<LoveComment> commentLoveList = user1.getLoveCommentList();
 
-        if (user != null) {
-
             for (LoveComment loveComment : commentLoveList) {
                 if (loveComment.getUser().getId() == comment.getUser().getId() && loveComment.getComment().getCommentId() == comment.getCommentId()) {
                     if (loveComment.isLove() == false) {
@@ -105,9 +103,6 @@ public class LoveService {
             comment.LoveOk();
             return new ResponseEntity("댓글을 좋아요 했습니다.", HttpStatus.OK);
 
-        } else {
-            throw new IllegalArgumentException("로그인 유저만 좋아요할 수 있습니다.");
-        }
     }
 
 }
