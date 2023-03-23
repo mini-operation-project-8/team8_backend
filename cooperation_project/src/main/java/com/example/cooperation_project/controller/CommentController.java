@@ -4,6 +4,7 @@ import com.example.cooperation_project.dto.comment.ReqCommentDto;
 import com.example.cooperation_project.dto.comment.RespCommentDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
+import com.example.cooperation_project.service.LoveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class CommentController {
 
     private final CommentService commentService;
+
+    private final LoveService loveService;
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,
@@ -46,15 +49,20 @@ public class CommentController {
             .body(commentService.deleteComment(postId, commentId, userDetails.getUser()));
     }
 
-    @PutMapping("/comments/{id}/loves")
-    public ResponseEntity<Map<String, HttpStatus>> BoardLoveOk(@PathVariable Long id,
-        @AuthenticationPrincipal UserDetailsImpl userDetails) {
-
-        return commentService.loveOk(id, userDetails.getUser());
-    }
     @GetMapping("/{postId}/comments")
     public List<RespCommentDto> getComment (@PathVariable Long postId){
         return commentService.getComment(postId);
+    }
+
+    @PutMapping("/comments/{id}/loves")
+    public ResponseEntity<Object> BoardLoveOk(@PathVariable Long id,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
+        boolean checked = loveService.loveOk(id, userDetails.getUser());
+
+        return checked ?
+            ResponseEntity.ok("댓글을 좋아요 했습니다.") :
+            ResponseEntity.ok("좋아요를 취소 했습니다.");
     }
 
 }
