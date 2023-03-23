@@ -6,7 +6,7 @@ import com.example.cooperation_project.dto.post.RespPostDto;
 import com.example.cooperation_project.dto.post.ReqPostPageableDto;
 import com.example.cooperation_project.dto.post.RespTotalOfPostsDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
-import com.example.cooperation_project.service.LoveService;
+import com.example.cooperation_project.service.LoveChitChatService;
 import com.example.cooperation_project.service.PostService;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ public class PostController {
 
     private final PostService postService;
 
-    private final LoveService loveService;
+    private final LoveChitChatService loveService;
 
     @PostMapping("/posts")
     public ResponseEntity<Object> createPost(@RequestBody @Valid ReqPostDto reqPostDto,

@@ -4,7 +4,7 @@ import com.example.cooperation_project.dto.comment.ReqCommentDto;
 import com.example.cooperation_project.dto.comment.RespCommentDto;
 import com.example.cooperation_project.security.UserDetailsImpl;
 import com.example.cooperation_project.service.CommentService;
-import com.example.cooperation_project.service.LoveService;
+import com.example.cooperation_project.service.LoveChitChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    private final LoveService loveService;
+    private final LoveChitChatService loveService;
 
     @PostMapping("/{postId}/comments")
     public ResponseEntity<Object> createdComment(@PathVariable Long postId,
