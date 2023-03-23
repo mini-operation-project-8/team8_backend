@@ -58,8 +58,8 @@ public class ChitChatControllerAdvice {
     public ResponseEntity<RespMsgDto> handlerValidException(
         MethodArgumentNotValidException e) {
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-            .body(new RespMsgDto(e.getMessage()));
+       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(new RespMsgDto("게시글의 제목 또는 내용은 빈칸일 수 없습니다."));
     }
 
 

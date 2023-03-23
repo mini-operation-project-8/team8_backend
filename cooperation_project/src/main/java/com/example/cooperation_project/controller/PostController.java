@@ -32,12 +32,8 @@ public class PostController {
 
     @PostMapping("/posts")
     public ResponseEntity<Object> createPost(@RequestBody @Valid ReqPostDto reqPostDto,
-        @AuthenticationPrincipal UserDetailsImpl userDetails, BindingResult result) {
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        if (result.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new RespMsgDto("게시글의 제목 또는 내용은 빈칸일 수 없습니다."));
-        }
 
         return ResponseEntity.ok(postService.createPost(reqPostDto, userDetails.getUser()));
     }
